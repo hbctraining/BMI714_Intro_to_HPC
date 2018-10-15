@@ -125,10 +125,8 @@ Create a folder for every R version you are working with, e.g. `~/R/3.5.1/librar
 > You can also add the command to modify the `$R_LIBS_USER` variable to a hidden file called `~/.Renviron`, that way it will be available to you the next time you log on.
 > 
 > ```bash
-> nano ~/.Renviron
+> echo 'R_LIBS_USER="~/R/3.5.1/library"' >  ~/.Renviron
 > ```
-> 
-> Modify the first line in `~/.Renviron` to be `R_LIBS_USER="~/R/3.5.1/library"` instead of the default value, and save the file.
 
 > **Note 2:**
 >
