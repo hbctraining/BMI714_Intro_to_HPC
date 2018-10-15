@@ -110,7 +110,7 @@ Say `cancel` or do Ctrl + C to escape back to the R command prompt and quit out 
 $ mkdir -p ~/R/3.5.1/library
 
 ## modify the environment to redirect installations to above folder
-$ R_LIBS_USER="~/R/3.5.1/library"
+$ export R_LIBS_USER="~/R/3.5.1/library"
 
 ## check the contents of the environment variable R_LIBS_USER
 $ echo $R_LIBS_USER
@@ -132,11 +132,11 @@ Create a folder for every R version you are working with, e.g. `~/R/3.5.1/librar
 
 > **Note 2:**
 >
-> An alternative method would be not tinker with the `R_LIBS_USER` environment variable, but to get into the habit of specifying the install location when installing, e.g. `install.packages("dplyr", lib="~/R/3.5.1/library")`
+> An alternative method would be to not tinker with the `R_LIBS_USER` environment variable, but instead to get into the habit of specifying the install location when installing, e.g. `install.packages("dplyr", lib="~/R/3.5.1/library")`
 
 > **Note 3:**
 >
-> Talk to the folks at HMS RC to find out which packages are already installed, and also about the best way to install R packages locally. They have a [how-to guide available online](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages) for installing packages locally, if you feel comfortable trying it on your own.
+> Talk to the folks at HMS RC to find out which packages are already installed. For additional information please take a look at their [how-to guide available online](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages).
 
 ## Running R scripts on O2
 
@@ -187,8 +187,8 @@ Now copy and paste the following script and save the file.
 
 print("reading in arguments from command line")
 args <- commandArgs(trailingOnly = TRUE)
-## commandArgs reads in the arguments as a character vector
 
+## commandArgs reads in the arguments as a character vector
 print("converting input to numeric")
 num <- as.numeric(args[1])
 
