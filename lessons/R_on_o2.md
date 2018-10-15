@@ -95,7 +95,7 @@ Warning in install.packages("dplyr") :
 Would you like to use a personal library instead? (yes/No/cancel)
 ```
 
-Based on this message it looks like the main library folder can only be modified by the sys admins. The cluster has been set up to allow every user to create their own libraries for the distinct versions of R, this is to account for every user having different needs.
+Based on this message it looks like the main library folder cannot be modified by us. Instead, the cluster has been set up to allow every user to create their own libraries for the distinct versions of R, this is to account for every user having different needs.
 
 Say `cancel` or do Ctrl + C to escape back to the R command prompt and quit out of R without saving the workspace image.
 
@@ -118,7 +118,6 @@ echo $R_LIBS_USER
 
 Now if you were to start R and try `install.pacakges("dplyr")`, it should not give you a warning anymore, but you will be prompted to choose a CRAN mirror or server to download from - try to pick a relatively close location.
 
-
 Create a folder for every R version you are working with, e.g. `~/R/3.5.1/library`, `~/R/3.4.1/library` and so on. **Keep R installations separate for different verions of R** and save the library folders for old R versions. This will make your work more reproducible and working in R more efficient.
 
 > **Note 1:**
@@ -135,220 +134,78 @@ Create a folder for every R version you are working with, e.g. `~/R/3.5.1/librar
 >
 > An alternative method would be not tinker with the `R_LIBS_USER` environment variable, but to get into the habit of specifying the install location when installing, e.g. `install.packages("dplyr", lib="~/R/3.5.1/library")`
 
-
-
+> **Note 3:**
+>
+> Talk to the folks at HMS RC to find out which packages are already installed, and also about the best way to install R packages locally. They have a [how-to guide available online](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages) for installing packages locally, if you feel comfortable trying it on your own.
  
 > **NOTE:** If you were using X11 forwarding to view images, you could include the `--x11` flag in the interactive command:
 `srun --pty -p interactive -t 0-12:00 --x11 --mem 36G /bin/bash`. Details regarding X11 forwarding are available on the [HMS RC wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely).
 
 ## Running R scripts on O2
 
-You can use any of the above ways to run an Rscript on Orchestra. But, you will need a different shebang line:
-
-```bash
-#!/usr/bin/env Rscript
-```
-And, you can also submit it as a job to the LSF queue as follows:
-
-```bash
-$ bsub -q short -W 12:00 -R "rusage[mem=16000]" "Rscript mean.R" 
-# note the high memory usage above
-```
-
-Talk to the folks at HMS RC to find out which packages are already installed, and also about the best way to install R packages locally. They have a [how-to guide available online](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages) for installing packages locally, if you feel comfortable trying it on your own.
-
-***
-
-
-## R scripts
-
-In addition to running R interactively on the cluster, you can also run R scripts from the command prompt in Unix. These scripts are just like shell scripts, but with R code in them; we created a few in the past sessions. For running a script from the Unix command prompt, it will have to take into account the absolute or relative location of the files and folders that will be used. Also, your local environment (library specified in the `.Renviron` file) will need to have all the packages installed and available. 
-
-Let's explore R scripts in a bit more detail by using part of the script we created for the **single-cell RNA-seq marker identification**. Let's make a new folder in our home directory called `Rscripts` and run code from our `marker_id.R` script using the `pbmcs_seurat_tsne.rds` .RData object.
-
-```bash
-# Create directory for lesson
-$ mkdir ~/Rscripts
-
-# Change directories into Rscripts
-$ cd ~/Rscripts
-
-# Copy over the TSNE data
-$ cp /n/groups/hbctraining/ngs-data-analysis-longcourse/sessionVI/pbmcs_seurat_tsne.rds .
-```
-
-Now let's create the R script with vim. We have added `print()` statements to the script to help with trouble-shooting, if necessary:
-
-```bash
-$ vim marker_id.R
-```
-
-```r
-# Single-cell RNA-seq - Marker identification
-
-# Load libraries
-library(dplyr)
-library(Seurat)
-library(AnnotationHub)
-library(ensembldb)
-
-# Load Seurat clustered data
-seurat <- readRDS("pbmcs_seurat_tsne.rds")
-
-print("Identifying markers")
-# Identify gene markers
-all_markers <-FindAllMarkers(seurat,
-                             min.pct =  0.25,
-                             min.diff.pct = 0.25)
-
-print("Acquiring annotations")
-# Connect to AnnotationHub
-ah <- AnnotationHub()
-
-# Access the Ensembl database for organism
-ahDb <- query(ah, 
-              pattern = c("Homo sapiens", "EnsDb"), 
-              ignore.case = TRUE)
-	      
-# Acquire the latest annotation files
-id <- ahDb %>%
-  mcols() %>%
-  rownames() %>%
-  tail(n = 1)
-  
-# Download the appropriate Ensembldb database
-edb <- ah[[id]]
-
-# Extract gene-level information from database
-annotations <- genes(edb, 
-                     return.type = "data.frame")
-		     
-# Merge annotations with all markers		     
-all_markers <- dplyr::left_join(all_markers, annotations[ , c(1:3, 5)],
-                         by = c("gene" = "gene_id"))
-
-# Rearrange order of columns to make clearer
-all_markers <- all_markers[, c(6:8, 1:5, 9:10)]
-
-print("Writing to file")
-# Write results to file
-write.csv(all_markers, "all_markers.csv", quote = F, row.names = FALSE)
-```
+You can run an R script from the shell command prompt in several ways, each of the following should work.
 	
-Before we can run the script we don't want to forget the shebang line, which is slightly different since we are running an R script:
+```bash
+$ R < my_Rscript.R
+```
+
+```bash
+$ R CMD BATCH my_Rscript.R
+```
+
+```bash
+$ Rscript my_Rscript.R
+```
+
+To make sure that your script works properly on O2 with any of the above commands, it needs the the following specification at the top of the script.
 
 ```bash
 #!/usr/bin/env Rscript
 ```
 
-You can run an R script from the shell command prompt in several ways, such as:
-	
-```bash
-# DO NOT RUN!
-$ R < marker_id.R
-	
-$ R CMD BATCH marker_id.R
-```
-
-But we are going to run our `marker_id.R` script using the following method:
-
-```r
-$ Rscript marker_id.R
-```
-
-Instead of running interactively, you could also submit it as a job to a Slurm queue as follows:
+And, you can also submit it as a job to the SLURM queue as follows:
 
 ```bash
-# DO NOT RUN!
-$ sbatch -p priority -t 0-12:00 --job-name sc_marker_id --mem 36G -o %j.out -e %j.err "Rscript marker_id.R" 
-# note the high memory usage above
+$ sbatch -p priority -t 0-12:00 --mem 36G -o %j.out -e %j.err --wrap="Rscript my_Rscript.R" 
+## note the high memory usage
 ```
 
-> **NOTE:** It is not uncommon to require additional memory, especially for single-cell RNA-seq (some projects have required up to 128G memory). Since requesting so much memory can take a while to receive, submitting the job to the `priority` queue can be helpful.
+#### Giving an input to Rscripts
 
-### R positional parameters
+Finally, it is helpful to know that these R scripts can take files or arguments as input. This concept is called "positional parameters". If an R script is able to accept specific input, and the files or parameters are not *hard-coded* into the script, the script is a lot more flexible and efficient.
 
-Finally, it is helpful to know that these R scripts can take positional parameters as well. Therefore, we could use the same script to process different clustering analyses. We can add command line arguments to the script using the `commandArgs()` function:
+We can add command line arguments to the script can be accessed internally within the script using the `commandArgs()` function. Let's create an example script that takes in a number and gives us the square root of that number rounded to two decimal places.
 
 ```bash
-$ vim marker_id.R
+$ nano sqrt_input.R
 ```
 
-Go to top of file using `gg` in command mode and **delete the entire file** with `dG`.
-
-Now paste in the following script with command line arguments and save.
+Now copy and paste the following script and save the file.
 
 ```r
 #!/usr/bin/env Rscript
 
-# Usage: this Rscript is using Seurat to identify cell cluster markers. The input is an RDS file containing a Seurat object with clustering information contained within, and the output is a csv file containing the cluster markers. The script expects as a command line argument the path to the Seurat object and prefix to output file. To run:  Rscript marker_id.R "path/to/seurat.rds" "prefix_to_output_file"
+# Usage: this Rscript will accept a number and provide the square root of that number rounded to two decimal places.
+# Rscript sqrt_input.R <number>
 
-# Single-cell RNA-seq - Marker identification
-
-# Load libraries
-library(dplyr)
-library(Seurat)
-library(AnnotationHub)
-library(ensembldb)
-
-#options(echo=TRUE)
+print("reading in arguments from command line")
 args <- commandArgs(trailingOnly = TRUE)
+## commandArgs reads in the arguments as a character vector
 
-# Load Seurat clustered data
-seurat <- readRDS(args[1])
+print("converting input to numeric")
+num <- as.numeric(args[1])
 
-
-print("Identifying markers")
-# Identify gene markers
-all_markers <-FindAllMarkers(seurat,
-                             min.pct =  0.25,
-                             min.diff.pct = 0.25)
-
-print("Acquiring annotations")
-# Connect to AnnotationHub
-ah <- AnnotationHub()
-
-# Access the Ensembl database for organism
-ahDb <- query(ah, 
-              pattern = c("Homo sapiens", "EnsDb"), 
-              ignore.case = TRUE)
-	      
-# Acquire the latest annotation files
-id <- ahDb %>%
-  mcols() %>%
-  rownames() %>%
-  tail(n = 1)
-  
-# Download the appropriate Ensembldb database
-edb <- ah[[id]]
-
-# Extract gene-level information from database
-annotations <- genes(edb, 
-                     return.type = "data.frame")
-		     
-# Merge annotations with all markers		     
-all_markers <- dplyr::left_join(all_markers, annotations[ , c(1:3, 5)],
-                         by = c("gene" = "gene_id"))
-
-# Rearrange order of columns to make clearer
-all_markers <- all_markers[, c(6:8, 1:5, 9:10)]
-
-print("Writing to file")
-# Write results to file
-write.csv(all_markers,  paste0(args[2], "_all_markers.csv"), quote = F, row.names = FALSE)
+print("running the sqrt() and round() functions on the input")
+round(sqrt(num), digit=2)
 ```
 
 Now to run we can provide the parameters:
 
 ```bash
-Rscript marker_id.R "pbmcs_seurat_tsne.rds" "seurat_res0.8_all_clusters"
+$ Rscript sqrt_input.R 60
 ```
 
-The print statements will output as the script proceeds. When completed take a quick peek at the markers file generated:
-
-```bash
-less seurat_res0.8_all_clusters_all_markers.csv
-```
+The print statements will output as the script proceeds. 
 
 ***
 
