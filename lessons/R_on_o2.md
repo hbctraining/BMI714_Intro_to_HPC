@@ -21,7 +21,7 @@ You can work with R on O2, but there are few differences from how you work with 
 
 Let's walk through some of these in more detail, but make sure you are still logged on to O2 and in an interactive session.
 
-## Load the appropriate R module
+## Loading the appropriate R module
 
 Several versions of R are available on O2 as modules.
 
@@ -125,10 +125,8 @@ Create a folder for every R version you are working with, e.g. `~/R/3.5.1/librar
 > You can also add the command to modify the `$R_LIBS_USER` variable to a hidden file called `~/.Renviron`, that way it will be available to you the next time you log on.
 > 
 > ```bash
-> nano ~/.Renviron
+> echo 'R_LIBS_USER="~/R/3.5.1/library"' >  ~/.Renviron
 > ```
-> 
-> Modify the first line in `~/.Renviron` to be `R_LIBS_USER="~/R/3.5.1/library"` instead of the default value, and save the file.
 
 > **Note 2:**
 >
@@ -136,22 +134,22 @@ Create a folder for every R version you are working with, e.g. `~/R/3.5.1/librar
 
 > **Note 3:**
 >
-> Talk to the folks at HMS RC to find out which packages are already installed. For additional information please take a look at their [how-to guide available online](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages).
+> Talk to the folks at HMS RC to find out which packages are already installed. For additional information please take a look at their [online "how-to" guide](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages).
 
 ## Running R scripts on O2
 
 You can run an R script from the shell command prompt in several ways, each of the following should work.
 	
 ```bash
-$ R < my_Rscript.R
+$ R < my_script.R
 ```
 
 ```bash
-$ R CMD BATCH my_Rscript.R
+$ R CMD BATCH my_script.R
 ```
 
 ```bash
-$ Rscript my_Rscript.R
+$ Rscript my_script.R
 ```
 
 To make sure that your script works properly on O2 with any of the above commands, it needs the the following specification at the top of the script.
@@ -163,7 +161,7 @@ To make sure that your script works properly on O2 with any of the above command
 And, you can also submit it as a job to the SLURM queue as follows:
 
 ```bash
-$ sbatch -p priority -t 0-12:00 --mem 36G -o %j.out -e %j.err --wrap="Rscript my_Rscript.R" 
+$ sbatch -p priority -t 0-12:00 --mem 36G -o %j.out -e %j.err --wrap="Rscript my_script.R" 
 ## note the high memory usage
 ```
 
@@ -196,17 +194,17 @@ print("running the sqrt() and round() functions on the input")
 round(sqrt(num), digit=2)
 ```
 
-Now to run we can provide the parameters:
+Now we can run the script with a parameter/argument, i.e. the number we want to get the square root of:
 
 ```bash
 $ Rscript sqrt_input.R 60
 ```
 
-The print statements will output as the script proceeds. 
+Note how the print statements output as the script proceeds.
 
 ## X11 forwarding
  
-If you want have images pop up interactively when you are working with R on O2, or in some cases save plots without viewing them, you will need to install some additional software and have it be running when you log on to O2. 
+If you want to have images pop up interactively when you are working with R on O2 or even make/save plots without viewing them, you will need to install and run additional software. 
 
 * Windows users will need [Xming](http://sourceforge.net/projects/xming/)
 * MacOSX users will need [Xquartz](http://xquartz.macosforge.org/landing/)
@@ -218,14 +216,14 @@ Once you have the correct software installed, make sure it is running before you
 $ ssh -XY ecommonsID@o2.hms.harvard.edu
 ```
 
-You can start an interactive session with the additional `--x11` argument.
+Once on O2, you can start an interactive session with the additional `--x11` argument.
 ```bash
 $ srun --pty -p interactive -t 0-12:00 --x11 /bin/bash
 ```
 
-You can start a batch job with the additional `--x11=batch` argument.
+You can also start a batch job with the additional `--x11=batch` argument.
 ```bash
-$ sbatch -p short -t 0-12:00 --x11=batch --wrap="commands here"
+$ sbatch -p short -t 0-12:00 --x11=batch --wrap="Rscript my_script.R"
 ```
 
 Additional instructions and a troubleshooting guide is available on the [HMS-RC's O2 wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely). 
