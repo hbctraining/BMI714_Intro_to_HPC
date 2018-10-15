@@ -134,7 +134,7 @@ Create a folder for every R version you are working with, e.g. `~/R/3.5.1/librar
 
 > **Note 3:**
 >
-> Talk to the folks at HMS RC to find out which packages are already installed. For additional information please take a look at their [how-to guide available online](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages).
+> Talk to the folks at HMS RC to find out which packages are already installed. For additional information please take a look at their online ["how-to" guide](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages).
 
 ## Running R scripts on O2
 
