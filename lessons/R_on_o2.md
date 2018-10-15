@@ -21,7 +21,7 @@ You can work with R on O2, but there are few differences from how you work with 
 
 Let's walk through some of these in more detail, but make sure you are still logged on to O2 and in an interactive session.
 
-## Load the appropriate R module
+## Loading the appropriate R module
 
 Several versions of R are available on O2 as modules.
 
