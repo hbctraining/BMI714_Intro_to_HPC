@@ -137,9 +137,6 @@ Create a folder for every R version you are working with, e.g. `~/R/3.5.1/librar
 > **Note 3:**
 >
 > Talk to the folks at HMS RC to find out which packages are already installed, and also about the best way to install R packages locally. They have a [how-to guide available online](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages) for installing packages locally, if you feel comfortable trying it on your own.
- 
-> **NOTE:** If you were using X11 forwarding to view images, you could include the `--x11` flag in the interactive command:
-`srun --pty -p interactive -t 0-12:00 --x11 --mem 36G /bin/bash`. Details regarding X11 forwarding are available on the [HMS RC wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely).
 
 ## Running R scripts on O2
 
@@ -206,6 +203,32 @@ $ Rscript sqrt_input.R 60
 ```
 
 The print statements will output as the script proceeds. 
+
+## X11 forwarding
+ 
+If you want have images pop up interactively when you are working with R on O2, or in some cases save plots without viewing them, you will need to install some additional software and have it be running when you log on to O2. 
+
+* Windows users will need [Xming](http://sourceforge.net/projects/xming/)
+* MacOSX users will need [Xquartz](http://xquartz.macosforge.org/landing/)
+
+**Note, this section is not hands-on, please try it out on your own time.**
+
+Once you have the correct software installed, make sure it is running before you log on to O2 with the additional `-XY` argument.
+```bash
+$ ssh -XY ecommonsID@o2.hms.harvard.edu
+```
+
+You can start an interactive session with the additional `--x11` argument.
+```bash
+$ srun --pty -p interactive -t 0-12:00 --x11 /bin/bash
+```
+
+You can start a batch job with the additional `--x11=batch` argument.
+```bash
+$ sbatch -p short -t 0-12:00 --x11=batch --wrap="commands here"
+```
+
+Additional instructions and a troubleshooting guide is available on the [HMS-RC's O2 wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely). 
 
 ***
 
