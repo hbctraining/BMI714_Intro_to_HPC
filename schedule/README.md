@@ -14,14 +14,15 @@ This repository has teaching materials that was adapted for students taking the 
 |:------------------------|:----------|
 |[Unix shell motivation]() | 5 min |
 |[Exploring the basics of Shell](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/Shell_basics.html) | 45 min |
-|[using R on a Unix system](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/R_on_o2.html) | 25 min |
+|[Using R on a Unix system](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/R_on_o2.html) | 25 min |
 
 ### Extra Lessons
 
 | Lessons            | Estimated Duration |
 |:------------------------|:----------|
-|[Intermediate Shell: Searching and Redirection](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/intermediate_shell.html) | 45 min |
-|[Intermediate Shell: Loops and Shell scripts]() | 45 min |
+|[Intermediate Shell: Searching and Redirection](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/searching_redirection.html) | 25 min |
+|[Practice Searching and Redirection](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/practice_searching_files.html) | 20 min |
+|[Intermediate Shell: Loops and Shell scripts](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/loops_and_scripts.html) | 45 min |
 
 
 ### Installation Requirements
