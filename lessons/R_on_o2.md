@@ -87,7 +87,7 @@ We get an error that there is no such package.
 Error in library("dplyr") : there is no package called ‘dplyr’
 ```
 
-If, we try to install it using `install.pacakges("dplyr")` we get the following error and a suggestion to create a personal library. 
+If we try to install it using `install.pacakges("dplyr")`, we get the following error and a suggestion to create a personal library. 
 
 ```
 Warning in install.packages("dplyr") :
