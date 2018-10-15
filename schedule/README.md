@@ -4,7 +4,7 @@
 
 ### Description
 
-This repository has teaching materials that was adapted for students taking the BMI 713 - Computing Skills for Biomedical Sciences course. The lessons below are hands-on, and students can walk-through if they have access to the HMS Research Comoputing cluster O2.
+This repository has teaching materials that was adapted for students taking the BMI 713 - Computing Skills for Biomedical Sciences course. The lessons below are hands-on, and students can walk-through if they have access to the HMS Research Computing (HMS-RC) cluster O2.
 
 
 
