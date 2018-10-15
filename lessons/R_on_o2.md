@@ -1,40 +1,148 @@
+---
+title: "Using R on O2"
+authors: "Mary Piper, Meeta Mistry, Radhika Khetani"
+---
+
 Approximate time: 20 minutes
 
 ## Learning Objectives
 
-* Illustrate how to set-up personal R libraries on O2 and install packages
+* Illustrate how to set-up personal R libraries on O2 to enable package installation
 * Demonstrate how to run an R script using `interactive` and `sbatch` jobs
 * Employ positional parameters in an R script to make scripts more flexible
 
 ## Using R on a Unix system
 
-You can also run R scripts from the command prompt in Unix. These scripts are just like shell scripts, but with R code in them; we created a few last session. For running a script from the Unix command prompt, it will have to take into account the absolute or relative location of the files and folders that will be used. Also, your local environment will need to have all the packages installed and available. 
+You can work with R on O2, but there are few differences from how you work with it on your laptop. 
 
-You can run an R script from the shell command prompt in several ways, 3 different ways are listed below for a script called `mean.R`:
-**Do not run this**
-	
+1. O2 does not support RStudio use from the cluster, instead R can be run directly from an interactive session or as an R script (recommended). *Other clusters may have RStudio servers talk to the system administrators for additional information.*
+1. To enable most type of plotting or image generation, you have to set up your account/computer to use X11 forwarding.
+1. Modules for R are available, and these have some commonly used pacakges installed. However, the local environment would need to be modified and a user-specific folder(s) has to be created for installing additional pacakges.
+
+Let's walk through some of these in more detail, but make sure you are still logged on to O2 and in an interactive session.
+
+## Load the appropriate R module
+
+Several versions of R are available on O2 as modules.
+
 ```bash
-$ R < mean.R
-	
-$ R CMD BATCH mean.R
-	
-$ Rscript mean.R
+$ module spider R
 ```
 
-### R on Orchestra:
-
-R is available on Orchestra, and you can do all of the things we did on our laptops on the cluster instead. Let's try this out:
+Next, let's check if we can directly load the `R/3.5.1` module or if we need to do anything special.
 
 ```bash
-$ module avail stats/R
-	
-$ module load stats/R/3.2.5
-	
+$ module spider R/3.5.1
+```
+
+Now that we have a better idea of what we need to do, let's load the R module and get started.
+
+```bash
+$ module load gcc/6.2.0 R/3.5.1
+
 $ R
 ```
 
-As you can see, various versions of R are available on Orchestra, but there is no RStudio-like GUI. You can quit R and get back to the `$` command prompt by typing `q()`, no need to save the workspace image.
-	
+The terminal window should now turn into the R console with the R prompt `>`. You can run all of the analyses performed on your laptops on the cluster, but there is no RStudio-like GUI.
+
+```r
+sessionInfo()
+```
+
+You should see something like what we have below. *How is the output of `sessionInfo()` different from on your computer?*
+
+```
+R version 3.5.1 (2018-07-02)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /n/app/openblas/0.2.19/lib/libopenblas_core2p-r0.2.19.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+[1] compiler_3.5.1
+```
+
+## Installing packages on O2
+
+Let's try loading the `dplyr` library.
+
+```r
+library("dplyr")
+```
+
+We get an error that there is no such package.
+```
+Error in library("dplyr") : there is no package called ‘dplyr’
+```
+
+If, we try to install it using `install.pacakges("dplyr")` we get the following error and a suggestion to create a personal library. 
+
+```
+Warning in install.packages("dplyr") :
+  'lib = "/n/app/R/3.5.1/lib64/R/library"' is not writable
+Would you like to use a personal library instead? (yes/No/cancel)
+```
+
+Based on this message it looks like the main library folder can only be modified by the sys admins. The cluster has been set up to allow every user to create their own libraries for the distinct versions of R, this is to account for every user having different needs.
+
+Say `cancel` or do Ctrl + C to escape back to the R command prompt and quit out of R without saving the workspace image.
+
+```r
+q()
+```
+
+#### Setting up the folder and local environment to allow package installations
+
+```bash
+## create a folder for pacakge installations
+mkdir -p ~/R/3.5.1/library
+
+## modify the environment to redirect installations to above folder
+R_LIBS_USER="~/R/3.5.1/library"
+
+## check the contents of the environment variable R_LIBS_USER
+echo $R_LIBS_USER
+```
+
+Now if you were to start R and try `install.pacakges("dplyr")`, it should not give you a warning anymore, but you will be prompted to choose a CRAN mirror or server to download from - try to pick a relatively close location.
+
+
+Create a folder for every R version you are working with, e.g. `~/R/3.5.1/library`, `~/R/3.4.1/library` and so on. **Keep R installations separate for different verions of R** and save the library folders for old R versions. This will make your work more reproducible and working in R more efficient.
+
+> **Note 1:**
+>
+> You can also add the command to modify the `$R_LIBS_USER` variable to a hidden file called `~/.Renviron`, that way it will be available to you the next time you log on.
+> 
+> ```bash
+> nano ~/.Renviron
+> ```
+> 
+> Modify the first line in `~/.Renviron` to be `R_LIBS_USER="~/R/3.5.1/library"` instead of the default value, and save the file.
+
+> **Note 2:**
+>
+> An alternative method would be not tinker with the `R_LIBS_USER` environment variable, but to get into the habit of specifying the install location when installing, e.g. `install.packages("dplyr", lib="~/R/3.5.1/library")`
+
+
+
+ 
+> **NOTE:** If you were using X11 forwarding to view images, you could include the `--x11` flag in the interactive command:
+`srun --pty -p interactive -t 0-12:00 --x11 --mem 36G /bin/bash`. Details regarding X11 forwarding are available on the [HMS RC wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely).
+
+## Running R scripts on O2
+
 You can use any of the above ways to run an Rscript on Orchestra. But, you will need a different shebang line:
 
 ```bash
@@ -51,118 +159,6 @@ Talk to the folks at HMS RC to find out which packages are already installed, an
 
 ***
 
-## Using R on a Unix system
-
-For many analyses using R tools, the ability to utilize the resources of the cluster can greatly improve the speed and allocate greater memory to perform more efficient analyses, particularly for steps in single-cell RNA-seq (clustering, marker identification, and DE analysis) and ChIP-seq (ChIPQC and DiffBind) analyses. To run these analyses on the O2 cluster requires a set-up of a personal R library and X11 forwarding, if you want to interactively visualize output plots. 
-
-Any non-base R packages needed for an analysis need to be downloaded to a personal R library prior to use. To create a personal R library, we can create a special directory. More information on personal R libraries on O2 are available on the [O2 Wiki](https://wiki.rc.hms.harvard.edu/display/O2/Personal+R+Packages).
-
-Let's create our personal R library, if not already created, in our `HOME` directory. Be sure to include the R version number for any R library created. Since R can be memory intensive, we often need to adjust the `--mem` parameter when running R interactively or submitting jobs.
-
-```bash
-$ srun --pty -p interactive -t 0-12:00 --mem 36G /bin/bash
-
-$ mkdir -p ~/R/3.5.1/library
-```
-
-> **NOTE:** If you were using X11 forwarding to view images, you could include the `--x11` flag in the interactive command:
-`srun --pty -p interactive -t 0-12:00 --x11 --mem 36G /bin/bash`. Details regarding X11 forwarding are available on the [HMS RC wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely).
-
-
-### Installing R packages
-
-To add packages to our personal R library, we should have the path to our library designated in a special file in our home directory that R explores for settings/information during every R session, called `.Renviron`. Let's create/open this file:
-
-```bash
-vim ~/.Renviron
-```
-
-```bash
-R_LIBS_USER="~/R/3.5.1/library"
-```
-
-It is possible to have multiple R libraries if you need to use different versions of R, for example, perhaps you performed an analysis a year ago and want to analyze it a bit more with the same versions of all the tools. You could just comment out your current library and point your `.Renviron` to the older library:
-
-```bash
-DO NOT RUN!
-
-# R_LIBS_USER="~/R/3.5.1/library"
-
-R_LIBS_USER="~/R/3.4.1/library"
-```
-
-This can help with making your research more reproducible.
-
-## R on O2:
-
-Once we have our library created, we can load the R module appropriate for the version of our R library and start R. 
-
-```bash
-$ module spider R
-```
-
-There are various versions of R available on O2.
-
-```bash
-$ module load gcc/6.2.0 R/3.5.1 hdf5/1.10.1
-```
-
-> HDF5 is a file format that allows for storage of and access to large and/or complex data. This module is required for tools that need to work efficiently with data requiring large RAM, such as single-cell RNA-seq.
-
-```bash
-$ R
-```
-
-The terminal window should now turn into the R console with the R prompt `>`. You can run all of the analyses performed on our laptops on the cluster, but there is no RStudio-like GUI.
-
-### R package installations
-
-As we know, to do many of the analyses performed throughout the course requires many different R packages. To install packages on O2 is a bit different than installing on our laptops. While we will explore how to install the packages `dplyr`, `Seurat`, `AnnotationHub`, and `ensembldb`, it takes quite a bit of time to install, so we encourage you to do this on your own later. 
-
-To manually install a package on O2 from **CRAN**, we would need to specify where our library is using the following: `install.packages("name-of-your-package", lib="~/R/3.5.1/library")`. 
-
-For instance, for installing `dplyr` and `Seurat`, we would run the following code:
-
-```r
-# DO NOT RUN
-install.packages("dplyr", lib="~/R/3.5.1/library")
-
-install.packages("Seurat", lib="~/R/3.5.1/library")
-```
-
-> **NOTE:** You will be prompted to choose a CRAN mirror or server to download from - try to pick a relatively close location. 
-> 
-> Often during installations you might encounter errors such as: 
->
-> `Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : there is no package called ‘R.utils’`.
->
-> Whenever dealing with these messages try to install the packages mentioned (i.e. `R.utils`).
-
-However, for **Bioconductor** packages we do not need to specify the library path since we have already modified the environment variable to point to the library. 
-
-```r
-# DO NOT RUN
-source("https://bioconductor.org/biocLite.R")
-biocLite("AnnotationHub")
-
-biocLite("ensembldb")
-```
-
-If typing in R and wanting to use `esc` to return the command prompt, on the command line we need to use `CTL + C` instead.
-
-You can quit R and get back to the `$` command prompt by typing `q()`, and there is no need to save the workspace image.
-
-> **NOTE:** Talk to the folks at HMS RC to find out which packages are already installed for each of the R modules available. 
-
-For the rest of this session, we are going to use an R library in which we have already installed these libraries, so we are going to add this library to our `.Renviron` file. 
-
-```bash
-$ vim ~/.Renviron
-```
-
-```bash
-R_LIBS_USER="/n/groups/hbctraining/R/R-3.5.1/library"
-```
 
 ## R scripts
 
