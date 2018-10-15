@@ -141,15 +141,15 @@ Create a folder for every R version you are working with, e.g. `~/R/3.5.1/librar
 You can run an R script from the shell command prompt in several ways, each of the following should work.
 	
 ```bash
-$ R < my_Rscript.R
+$ R < my_script.R
 ```
 
 ```bash
-$ R CMD BATCH my_Rscript.R
+$ R CMD BATCH my_script.R
 ```
 
 ```bash
-$ Rscript my_Rscript.R
+$ Rscript my_script.R
 ```
 
 To make sure that your script works properly on O2 with any of the above commands, it needs the the following specification at the top of the script.
@@ -161,7 +161,7 @@ To make sure that your script works properly on O2 with any of the above command
 And, you can also submit it as a job to the SLURM queue as follows:
 
 ```bash
-$ sbatch -p priority -t 0-12:00 --mem 36G -o %j.out -e %j.err --wrap="Rscript my_Rscript.R" 
+$ sbatch -p priority -t 0-12:00 --mem 36G -o %j.out -e %j.err --wrap="Rscript my_script.R" 
 ## note the high memory usage
 ```
 
