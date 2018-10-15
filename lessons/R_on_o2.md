@@ -46,7 +46,7 @@ $ R
 The terminal window should now turn into the R console with the R prompt `>`. You can run all of the analyses performed on your laptops on the cluster, but there is no RStudio-like GUI.
 
 ```r
-sessionInfo()
+> sessionInfo()
 ```
 
 You should see something like what we have below. *How is the output of `sessionInfo()` different from on your computer?*
@@ -79,7 +79,7 @@ loaded via a namespace (and not attached):
 Let's try loading the `dplyr` library.
 
 ```r
-library("dplyr")
+> library("dplyr")
 ```
 
 We get an error that there is no such package.
@@ -100,20 +100,20 @@ Based on this message it looks like the main library folder cannot be modified b
 Say `cancel` or do Ctrl + C to escape back to the R command prompt and quit out of R without saving the workspace image.
 
 ```r
-q()
+> q()
 ```
 
 #### Setting up the folder and local environment to allow package installations
 
 ```bash
 ## create a folder for pacakge installations
-mkdir -p ~/R/3.5.1/library
+$ mkdir -p ~/R/3.5.1/library
 
 ## modify the environment to redirect installations to above folder
-R_LIBS_USER="~/R/3.5.1/library"
+$ R_LIBS_USER="~/R/3.5.1/library"
 
 ## check the contents of the environment variable R_LIBS_USER
-echo $R_LIBS_USER
+$ echo $R_LIBS_USER
 ```
 
 Now if you were to start R and try `install.pacakges("dplyr")`, it should not give you a warning anymore, but you will be prompted to choose a CRAN mirror or server to download from - try to pick a relatively close location.
