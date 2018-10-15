@@ -194,17 +194,17 @@ print("running the sqrt() and round() functions on the input")
 round(sqrt(num), digit=2)
 ```
 
-Now to run we can provide the parameters:
+Now we can run the script with a parameter/argument, i.e. the number we want to get the square root of:
 
 ```bash
 $ Rscript sqrt_input.R 60
 ```
 
-The print statements will output as the script proceeds. 
+Note how the print statements output as the script proceeds.
 
 ## X11 forwarding
  
-If you want have images pop up interactively when you are working with R on O2, or in some cases save plots without viewing them, you will need to install some additional software and have it be running when you log on to O2. 
+If you want to have images pop up interactively when you are working with R on O2 or even make/save plots without viewing them, you will need to install and run additional software. 
 
 * Windows users will need [Xming](http://sourceforge.net/projects/xming/)
 * MacOSX users will need [Xquartz](http://xquartz.macosforge.org/landing/)
@@ -216,14 +216,14 @@ Once you have the correct software installed, make sure it is running before you
 $ ssh -XY ecommonsID@o2.hms.harvard.edu
 ```
 
-You can start an interactive session with the additional `--x11` argument.
+Once on O2, you can start an interactive session with the additional `--x11` argument.
 ```bash
 $ srun --pty -p interactive -t 0-12:00 --x11 /bin/bash
 ```
 
-You can start a batch job with the additional `--x11=batch` argument.
+You can also start a batch job with the additional `--x11=batch` argument.
 ```bash
-$ sbatch -p short -t 0-12:00 --x11=batch --wrap="commands here"
+$ sbatch -p short -t 0-12:00 --x11=batch --wrap="Rscript my_script.R"
 ```
 
 Additional instructions and a troubleshooting guide is available on the [HMS-RC's O2 wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely). 
