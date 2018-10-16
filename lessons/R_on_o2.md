@@ -17,7 +17,7 @@ You can work with R on O2, but there are few differences from how you work with 
 
 1. O2 does not support RStudio use from the cluster, instead R can be run directly from an interactive session or as an R script (recommended). *Other clusters may have RStudio servers available, please talk to the respective system administrators for additional information.*
 1. To enable most types of plotting or image generation, you have to set up your account/computer to use X11 forwarding.
-1. Modules for R are available, and these have some commonly used pacakges installed. However, the local environment would need to be modified and a user-specific folder(s) has to be created for installing additional pacakges.
+1. Modules for R are available, and these have some commonly used packages installed. However, the local environment would need to be modified and a user-specific folder(s) has to be created for installing additional pacakges.
 
 Let's walk through some of these in more detail, but make sure you are still logged on to O2 and in an interactive session.
 
@@ -87,7 +87,7 @@ We get an error that there is no such package.
 Error in library("dplyr") : there is no package called ‘dplyr’
 ```
 
-If we try to install it using `install.pacakges("dplyr")`, we get the following error and a suggestion to create a personal library. 
+If we try to install it using `install.packages("dplyr")`, we get the following error and a suggestion to create a personal library. 
 
 ```
 Warning in install.packages("dplyr") :
