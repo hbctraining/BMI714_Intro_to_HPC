@@ -45,7 +45,7 @@ Just like with `>` in R, when you see the `$`, it means that bash is ready to st
 
 The command prompt will have some characters before it, something like `[rc_training01@login01 ~]`, this is telling you what the name of the computer you are working on is.
 
-The first command we will type on the command prompt will be to start a so-called "interactive session" on O2. This will take us off of the login node and on to a compute node. *We talked about this last week during the lecture on HPC and O2. For more detail, and to refresh your memory we have the [slides linked here](https://www.dropbox.com/s/9hesf747u6mmjcd/HPC_intro_O2.pdf?dl=1)* 
+The first command we will type on the command prompt will be to start a so-called "interactive session" on O2. This will take us off of the login node and on to a compute node. *We talked about this last week during the lecture on HPC and O2. For more detail, and to refresh your memory we have the [slides linked here](https://github.com/hbctraining/Intro-to-Unix-QMB/blob/master/slides/HPC_intro_O2.pdf)* 
 
 
 ```bash
