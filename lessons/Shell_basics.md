@@ -404,6 +404,13 @@ To summarize, while you are in your home directory, the commands `ls ~`, `ls ~/.
 - <kbd>Ctrl + A</kbd> will bring you to the start of the command you are writing.
 - <kbd>Ctrl + E</kbd> will bring you to the end of the command.
 
+## Advanced Shell Topics:
+We have only scratched the surface of working with Shell. If you plan on working in a command-line environment, you may want to also take the time to peruse some of our other materials below. In terms of what you will need to follow along in class, this lesson on its will suffice.
+
+* [Searching files and redirection](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/searching_redirection)
+* [Loops and shell scripts](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/loops_and_scripts)
+
+***
 
 ## Help and resources
 
@@ -420,7 +427,7 @@ a shell command are doing.
 
 Software Carpentry tutorial: [The Unix shell](http://software-carpentry.org/v4/shell/index.html)
 
-General help:
+**General help**:
 - http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html
 - man bash
 - Google - if you don't know how to do something, try Googling it. Other people
