@@ -16,12 +16,47 @@ Approximate time: 20 minutes
 You can work with R on O2, but there are few differences from how you work with it on your laptop. 
 
 1. O2 does not support RStudio use from the cluster, instead R can be run directly from an interactive session or as an R script (recommended). *Other clusters may have RStudio servers available, please talk to the respective system administrators for additional information.*
-1. To enable most types of plotting or image generation, you have to set up your account/computer to use X11 forwarding.
-1. Modules for R are available, and these have some commonly used packages installed. However, the local environment would need to be modified and a user-specific folder(s) has to be created for installing additional pacakges.
+2. To enable most types of plotting or image generation, you have to set up your account/computer to use X11 forwarding.
+3. Modules for R are available, and these have some commonly used packages installed. However, the local environment would need to be modified and a user-specific folder(s) has to be created for installing additional pacakges.
 
-Let's walk through some of these in more detail, but make sure you are still logged on to O2 and in an interactive session.
+Let's walk through some of these in more detail.
 
-## Loading the appropriate R module
+### Let's log in! 
+
+Type in the following command with your username to login:
+
+```bash
+ssh eCommonsID@o2.hms.harvard.edu
+```
+
+You will receive a prompt for your password, and you should type in your associated password; note that the cursor will *not move* as you type in your password.
+
+A warning might pop up the first time you try to connect to a remote machine, type "Yes" or "Y". 
+
+### Starting an interactive session
+
+Once logged in, you should see the O2 icon, some news, and the command prompt: 
+
+```bash
+[rc_training10@login01 ~]$ 
+```
+
+Just like with `>` in R, when you see the `$`, it means that bash is ready to start accepting commands from you.
+
+The command prompt will have some characters before it, something like `[rc_training01@login01 ~]`, this is telling you what the name of the computer you are working on is.
+
+The first command we will type on the command prompt will be to start an "interactive session" on O2. This will take us off of the login node and on to a compute node. *We talked about this last week during the lecture on HPC and O2. For more detail, and to refresh your memory we have the [slides linked here](https://github.com/hbctraining/Intro-to-Unix-QMB/blob/master/slides/HPC_intro_O2.pdf)* 
+
+
+```bash
+$ srun -p interactive --pty --mem 8G -t 0-12:00 /bin/bash 
+```
+
+Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. They should say something like `[rc_training01@compute-a-16-73 ~]`. 
+Make sure that your command prompt is now preceded by a character string that contains the word "compute". We want to do all of our work on the worker nodes, and not on the head/login node.
+
+
+### Loading the appropriate R module
 
 Several versions of R are available on O2 as modules.
 
@@ -103,7 +138,7 @@ Say `cancel` or do Ctrl + C to escape back to the R command prompt and quit out 
 > q()
 ```
 
-#### Setting up the folder and local environment to allow package installations
+### Setting up the folder and local environment to allow package installations
 
 ```bash
 ## create a folder for pacakge installations
@@ -134,7 +169,7 @@ Create a folder for every R version you are working with, e.g. `~/R/3.5.1/librar
 
 > **Note 3:**
 >
-> Talk to the folks at HMS RC to find out which packages are already installed. For additional information please take a look at their [online "how-to" guide](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages).
+> Talk to the folks at HMS RC to find out which packages are already installed. For additional information please take a look at their [online "how-to" guide](https://wiki.rc.hms.harvard.edu/display/O2/Personal+R+Packages).
 
 ## Running R scripts on O2
 
@@ -152,30 +187,25 @@ $ R CMD BATCH my_script.R
 $ Rscript my_script.R
 ```
 
+## Writing an R script
+
 To make sure that your script works properly on O2 with any of the above commands, it needs the the following specification at the top of the script.
 
 ```bash
 #!/usr/bin/env Rscript
 ```
 
-And, you can also submit it as a job to the SLURM queue as follows:
-
-```bash
-$ sbatch -p priority -t 0-12:00 --mem 36G -o %j.out -e %j.err --wrap="Rscript my_script.R" 
-## note the high memory usage
-```
-
-#### Giving an input to Rscripts
-
-Finally, it is helpful to know that these R scripts can take files or arguments as input. This concept is called "positional parameters". If an R script is able to accept specific input, and the files or parameters are not *hard-coded* into the script, the script is a lot more flexible and efficient.
-
-We can add command line arguments to the script can be accessed internally within the script using the `commandArgs()` function. Let's create an example script that takes in a number and gives us the square root of that number rounded to two decimal places.
+Let's open up a file using our `nano` text editor and start creating our script:
 
 ```bash
 $ nano sqrt_input.R
 ```
 
-Now copy and paste the following script and save the file.
+You can create a script that simply executes some series of tasks. Alternatively, it is helpful to know that R scripts can also take files or arguments as input. This concept is called "positional parameters". If an R script is able to accept specific input, and the files or parameters are not *hard-coded* into the script, the script is a lot more flexible and efficient.
+
+We can add command line arguments to the script can be accessed internally within the script using the `commandArgs()` function. Let's create an example script that takes in a number and gives us the square root of that number rounded to two decimal places.
+
+Copy and paste the following script and save the file:
 
 ```r
 #!/usr/bin/env Rscript
@@ -192,6 +222,7 @@ num <- as.numeric(args[1])
 
 print("running the sqrt() and round() functions on the input")
 round(sqrt(num), digit=2)
+
 ```
 
 Now we can run the script with a parameter/argument, i.e. the number we want to get the square root of:
@@ -201,6 +232,15 @@ $ Rscript sqrt_input.R 60
 ```
 
 Note how the print statements output as the script proceeds.
+
+## Submitting an R script as a job
+
+And, you can also submit it as a job to the SLURM queue as follows:
+
+```bash
+$ sbatch -p priority -t 0-12:00 --mem 36G -o %j.out -e %j.err --wrap="Rscript my_script.R" 
+## note the high memory usage
+```
 
 ## X11 forwarding
  
