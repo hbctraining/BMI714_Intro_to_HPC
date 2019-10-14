@@ -235,38 +235,71 @@ Note how the print statements output as the script proceeds.
 
 ## Submitting an R script as a job
 
-And, you can also submit it as a job to the SLURM queue as follows:
+You may find that the script you are running can take some time to process, and so it is not ideal to have to sit and wait there as it completes. In that case, rather than running your script interactively you will want to submit it as a job. To do so, you will need to provide SBATCH directives to let slurm know what resources your require for this job.
+
+You can do this at the command prompt:
 
 ```bash
-$ sbatch -p priority -t 0-12:00 --mem 36G -o %j.out -e %j.err --wrap="Rscript my_script.R" 
-## note the high memory usage
+$ sbatch -p priority -t 0-2:00 --mem 8G -o %j.out -e %j.err --wrap="Rscript sqrt_input.R 60" 
+
 ```
 
-## X11 forwarding
- 
-If you want to have images pop up interactively when you are working with R on O2 or even make/save plots without viewing them, you will need to install and run additional software. 
+Or you can create a **job submission script**:
 
-* Windows users will need [Xming](http://sourceforge.net/projects/xming/)
-* MacOSX users will need [Xquartz](http://xquartz.macosforge.org/landing/)
 
-**Note, this section is not hands-on, please try it out on your own time.**
-
-Once you have the correct software installed, make sure it is running before you log on to O2 with the additional `-XY` argument.
 ```bash
-$ ssh -XY ecommonsID@o2.hms.harvard.edu
+$ nano slurm_sqrt_input.sbatch
 ```
 
-Once on O2, you can start an interactive session with the additional `--x11` argument.
+
 ```bash
-$ srun --pty -p interactive -t 0-12:00 --x11 /bin/bash
+
+#!/bin/bash
+
+#SBATCH -p priority 		# partition name
+#SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
+#SBATCH --mem 8G 		# amount of memory requested
+#SBATCH --job-name sqrt_R_script 		# Job name
+#SBATCH -o %j.out		# File to which standard out will be written
+#SBATCH -e %j.err 		# File to which standard err will be written
+
+# Load required modules
+module load gcc/6.2.0 R/3.5.1
+
+# Point to personal library, if required
+export R_LIBS_USER="~/R/3.5.1/library"
+
+# Run the R script
+Rscript sqrt_input.R 60
+
 ```
 
-You can also start a batch job with the additional `--x11=batch` argument.
-```bash
-$ sbatch -p short -t 0-12:00 --x11=batch --wrap="Rscript my_script.R"
-```
 
-Additional instructions and a troubleshooting guide is available on the [HMS-RC's O2 wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely). 
+> ## X11 forwarding
+>  
+> If you want to have images pop up interactively when you are working with R on O2 or even make/save plots without viewing them, you will need to install and run additional software. 
+> 
+> * Windows users will need [Xming](http://sourceforge.net/projects/xming/)
+> * MacOSX users will need [Xquartz](http://xquartz.macosforge.org/landing/)
+> 
+> **Note, this section is not hands-on, please try it out on your own time.**
+> 
+> Once you have the correct software installed, make sure it is running before you log on to O2 with the additional `-XY` argument.
+> ```bash
+> $ ssh -XY ecommonsID@o2.hms.harvard.edu
+> ```
+> 
+> Once on O2, you can start an interactive session with the additional `--x11` argument.
+> ```bash
+> $ srun --pty -p interactive -t 0-12:00 --x11 /bin/bash
+> ```
+> 
+> You can also start a batch job with the additional `--x11=batch` argument.
+> ```bash
+> $ sbatch -p short -t 0-12:00 --x11=batch --wrap="Rscript my_script.R"
+> ```
+> 
+> Additional instructions and a troubleshooting guide is available on the [HMS-RC's O2 wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely). 
 
 ***
 
