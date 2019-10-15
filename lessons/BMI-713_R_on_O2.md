@@ -19,7 +19,7 @@ We have some **additional resources** which are not required, but are available 
 * [Hands-on exercises for working with Shell](https://hbctraining.github.io/Intro-to-Unix-QMB/exercises1_unix)
 * [Introduction to the Command Line](https://hbctraining.github.io/Intro-to-Shell/schedule/) - materials for full day workshop developed by HBC training team.
 
-The **class exercise** is [linked here]().
+The **class exercise** is [linked here](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/R_on_O2_class_exercises).
 
 
 
