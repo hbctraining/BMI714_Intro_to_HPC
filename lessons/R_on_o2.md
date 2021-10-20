@@ -45,7 +45,7 @@ Just like with `>` in R, when you see the `$`, it means that bash is ready to st
 
 The command prompt will have some characters before it, something like `[rc_training01@login01 ~]`, this is telling you what the name of the computer you are working on is.
 
-The first command we will type on the command prompt will be to start an "interactive session" on O2. This will take us off of the login node and on to a compute node. *We talked about this last week during the lecture on HPC and O2. For more detail, and to refresh your memory we have the [slides linked here](https://github.com/hbctraining/Intro-to-Unix-QMB/blob/master/slides/HPC_intro_O2.pdf)* 
+The first command we will type on the command prompt will be to **start an "interactive session" on O2**. This will take us off of the login node and on to a compute node. *We talked about this in-class during the lecture on HPC and O2. For more detail, and to refresh your memory we have the [slides linked here]()* 
 
 
 ```bash
@@ -53,7 +53,7 @@ $ srun -p interactive --pty --mem 8G -t 0-12:00 /bin/bash
 ```
 
 Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. They should say something like `[rc_training01@compute-a-16-73 ~]`. 
-Make sure that your command prompt is now preceded by a character string that contains the word "compute". We want to do all of our work on the worker nodes, and not on the head/login node.
+Make sure that your command prompt is now preceded by a character string that contains the word "compute". We want to do all of our work on the compute nodes, and not on the head/login node.
 
 
 ### Loading the appropriate R module
@@ -64,16 +64,16 @@ Several versions of R are available on O2 as modules.
 $ module spider R
 ```
 
-Next, let's check if we can directly load the `R/3.5.1` module or if we need to do anything special.
+Next, let's check if we can directly load the `R/4.1.1` module or if we need to do anything special.
 
 ```bash
-$ module spider R/3.5.1
+$ module spider R/4.1.1
 ```
 
 Now that we have a better idea of what we need to do, let's load the R module and get started.
 
 ```bash
-$ module load gcc/6.2.0 R/3.5.1
+$ module load gcc/6.2.0 R/4.1.1
 
 $ R
 ```
@@ -126,26 +126,26 @@ If we try to install it using `install.packages("dplyr")`, we get the following 
 
 ```
 Warning in install.packages("dplyr") :
-  'lib = "/n/app/R/3.5.1/lib64/R/library"' is not writable
+  'lib = "/n/app/R/4.1.1/lib64/R/library"' is not writable
 Would you like to use a personal library instead? (yes/No/cancel)
 ```
 
-Based on this message it looks like the main library folder cannot be modified by us. Instead, the cluster has been set up to allow every user to create their own libraries for the distinct versions of R, this is to account for every user having different needs.
+Based on this message it looks like the main library folder cannot be modified by us. Instead, the cluster has been set up to allow every user to create their own personal libraries for the distinct versions of R, this is to account for every user having different needs.
 
-Say `cancel` or do Ctrl + C to escape back to the R command prompt and quit out of R without saving the workspace image.
+Say `cancel` or do Ctrl + C to escape back to the R command prompt and **quit out of R without saving the workspace image**.
 
 ```r
 > q()
 ```
 
 ### Setting up the folder and local environment to allow package installations
-
+The following commands can be run in the shell at the command prompt.
 ```bash
 ## create a folder for pacakge installations
-$ mkdir -p ~/R/3.5.1/library
+$ mkdir -p ~/R/4.1.1/library
 
 ## modify the environment to redirect installations to above folder
-$ export R_LIBS_USER="~/R/3.5.1/library"
+$ export R_LIBS_USER="~/R/4.1.1/library"
 
 ## check the contents of the environment variable R_LIBS_USER
 $ echo $R_LIBS_USER
@@ -153,14 +153,14 @@ $ echo $R_LIBS_USER
 
 Now if you were to start R and try `install.pacakges("dplyr")`, it should not give you a warning anymore, but you will be prompted to choose a CRAN mirror or server to download from - try to pick a relatively close location.
 
-Create a folder for every R version you are working with, e.g. `~/R/3.5.1/library`, `~/R/3.4.1/library` and so on. **Keep R installations separate for different verions of R** and save the library folders for old R versions. This will make your work more reproducible and working in R more efficient.
+Create a folder for every R version you are working with, e.g. `~/R/4.0.1/library`, `~/R/4.1.1/library` and so on. **Keep R installations separate for different verions of R** and save the library folders for old R versions. This will make your work more reproducible and working in R more efficient.
 
 > **Note 1:**
 >
 > You can also add the command to modify the `$R_LIBS_USER` variable to a hidden file called `~/.Renviron`, that way it will be available to you the next time you log on.
 > 
 > ```bash
-> echo 'R_LIBS_USER="~/R/3.5.1/library"' >  ~/.Renviron
+> echo 'R_LIBS_USER="~/R/4.1.1/library"' >  ~/.Renviron
 > ```
 
 > **Note 2:**
@@ -264,10 +264,10 @@ $ nano slurm_sqrt_input.sbatch
 #SBATCH -e %j.err 		# File to which standard err will be written
 
 # Load required modules
-module load gcc/6.2.0 R/3.5.1
+module load gcc/6.2.0 R/4.1.1
 
 # Point to personal library, if required
-export R_LIBS_USER="~/R/3.5.1/library"
+export R_LIBS_USER="~/R/4.1.1/library"
 
 # Run the R script
 Rscript sqrt_input.R 60
