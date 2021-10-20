@@ -29,6 +29,7 @@ No installation requirements.
 |[Introduction to the command line](https://hbctraining.github.io/Training-modules/Intro_shell/lessons/01_the_filesystem.html)| 40 min |
 |[Searching and redirection](https://hbctraining.github.io/Intro-to-Shell/lessons/02_searching_files.html) | 40 min |
 
+
 ## In-class: Introduction to High-Performance Computing
 
 | Lessons            | Estimated Duration |
@@ -37,6 +38,7 @@ No installation requirements.
 |[Introduction to HPC and using the O2 cluster](https://github.com/hbctraining/Intro-to-shell-flipped/blob/master/lectures/HPC_intro_O2_Aug2021.pdf) | 75 min |
 
 ## Post-class resources
+* [Concepts and terminology related to High Performance Computing](https://hbctraining.github.io/Intro-to-shell-flipped/lessons/08_HPC_intro_and_terms.html)
 * [Using R on the O2 cluster](../lessons/R_on_o2.md)
 * [Practice exercises for using R on O2](../lessons/R_on_O2_class_exercises.md)
 
