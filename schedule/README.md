@@ -34,7 +34,7 @@ No installation requirements.
 | Lessons            | Estimated Duration |
 |:------------------------|:----------|
 | Pre-reading Q&A  | 15 min |
-|[Introduction to HPC and using the O2 cluster]() | 75 min |
+|[Introduction to HPC and using the O2 cluster](https://github.com/hbctraining/Intro-to-shell-flipped/blob/master/lectures/HPC_intro_O2_Aug2021.pdf) | 75 min |
 
 ## Post-class resources
 * [Using R on the O2 cluster](../lessons/R_on_o2.md)
