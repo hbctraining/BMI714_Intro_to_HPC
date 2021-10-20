@@ -37,7 +37,7 @@ No installation requirements.
 |[Introduction to HPC and using the O2 cluster]() | 75 min |
 
 ## Post-class resources
-* [Using R on O2]()
-* 
+* [Using R on the O2 cluster](../lessons/R_on_o2.md)
+* [Practice exercises for using R on O2](../lessons/R_on_O2_class_exercises.md)
 
 *These materials have been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
