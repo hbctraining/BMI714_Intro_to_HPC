@@ -8,6 +8,7 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 
 	<details>
 	<summary><b><i>Click here for the R code</i></b></summary>
+	
 	<br>
 	<p> Code for the script `sqrt.R` is provided below: 
 
@@ -27,23 +28,22 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	print("running the sqrt() and round() functions on the input")
 	round(sqrt(num), digit=2)            
 	```
-	</p>
-		
+	</p>	
 	</details>
 
 4. Once you have created the script, test that it runs well interactively.
 
 	<details>
-		<summary><b><i>How to run the R script</i></b></summary>
-		<br>
-		<p> The script can be run from the command line using the `Rscript` command. Don't forget to provide a numeric value as input.
+	<summary><b><i>How to run the R script</i></b></summary>
+	<br>
+	<p> 
+	The script can be run from the command line using the `Rscript` command. Don't forget to provide a numeric value as input.
 	            
-	```
+	```bash
 	  Rscript sqrt_input.R 60
 	```
 	
-	</p>
-		
+	</p>	
 	</details>
 
 
@@ -68,11 +68,10 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 
 
 	<details>
-		<summary><b><i>Script</i></b></summary>
-		<br>
+	<summary><b><i>Script</i></b></summary>
+	<br>
 	            
 	```
-	
 	#!/bin/bash
 	
 	#SBATCH -p priority 		# partition name
@@ -90,11 +89,9 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	
 	# Run the R script
 	Rscript sqrt_input.R 60
-	
 	```
 	
 	</p>
-		
 	</details>
 
 ### Run the script to start a new job on O2
