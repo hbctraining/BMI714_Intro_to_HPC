@@ -67,15 +67,15 @@ Create an R script and add the appropriate slurm directives to run it as a batch
     * Are there any new files with names ending in `.out` and `.err`?
     * What are the contents of these two files?
 
----
+
 
 **Couldn't get the script to work?**
 
-	<details>
-	<summary><b><i>Click here for the answer key. </i></b></summary>
- 	<br>   
+<details>
+<summary><b><i>Click here for the answer key. </i></b></summary>
+ <br>   
 	
-	<p> Your sbatch script shoudl look something like this: 
+<p> Your sbatch script should look something like this: 
 	
 	<pre>
 	#!/bin/bash
@@ -95,7 +95,7 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	
 	# Run the R script
 	Rscript sqrt_input.R 60
-
+ </details>
 
 ---
 
