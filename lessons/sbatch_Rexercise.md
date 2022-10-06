@@ -66,12 +66,12 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 1. Check the contents of your current directory -
     * Are there any new files with names ending in `.out` and `.err`?
     * What are the contents of these two files?
-    
 
-  	<details>
-  	<summary><b><i>Couldn't get the script to work? Click here for the answer key. </i></b></summary>
-  	<br>   
-  	<pre>
+	<details>
+	<summary><b><i>Couldn't get the script to work? Click here for the answer key. </i></b></summary>
+ 	<br>   
+ 	<pre>
+	
 	#!/bin/bash
 	
 	#SBATCH -p priority 		# partition name
