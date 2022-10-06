@@ -13,7 +13,6 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	<p> Code for the script `sqrt.R` is provided below: 
 		
 	<pre>
-  	<code>
 	#!/usr/bin/env Rscript
 	
 	# Usage: this Rscript will accept a number and provide the square root of that number rounded to two decimal places.
@@ -28,7 +27,7 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	
 	print("running the sqrt() and round() functions on the input")
 	round(sqrt(num), digit=2)            
-	</code>
+
 	</pre>
 	</p>	
 	</details>
