@@ -27,9 +27,10 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	
 	print("running the sqrt() and round() functions on the input")
 	round(sqrt(num), digit=2)            
-
 	</pre>
+	
 	</p>	
+	
 	</details>
 
 4. Once you have created the script, test that it runs well interactively.
