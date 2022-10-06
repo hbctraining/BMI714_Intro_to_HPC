@@ -13,7 +13,7 @@ The first command we will type on the command prompt will be to **start an "inte
 $ srun -p interactive --pty --mem 8G -t 0-12:00 /bin/bash 
 ```
 
-Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. They should say something like `[eCommonsID@compute-a-16-73 ~]`. 
+Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. It should say something like `[eCommonsID@compute-a-16-73 ~]`. 
 Make sure that your command prompt is now preceded by a character string that contains the word "compute". We want to do all of our work on the compute nodes, and not on the head/login node.
 
 ### Loading the appropriate R module
@@ -91,7 +91,7 @@ $ echo $R_LIBS_USER
 
 Now if you were to start R and try `install.pacakges("dplyr")`, it should not give you a warning anymore, but you will be prompted to choose a CRAN mirror or server to download from - try to pick a relatively close location.
 
-Create a folder for every R version you are working with, e.g. `~/R/4.0.1/library`, `~/R/4.1.1/library` and so on. **Keep R installations separate for different verions of R** and save the library folders for old R versions. This will make your work more reproducible and working in R more efficient.
+**Keep R installations separate for different verions of R**. You can do this by creating a folder for every R version you are working with, e.g. `~/R/4.0.1/library`, `~/R/4.1.1/library` and so on. This will make your work more reproducible and working in R more efficient.
 
 > **Note 1:**
 >
@@ -103,7 +103,7 @@ Create a folder for every R version you are working with, e.g. `~/R/4.0.1/librar
 
 > **Note 2:**
 >
-> An alternative method would be to not tinker with the `R_LIBS_USER` environment variable, but instead to get into the habit of specifying the install location when installing, e.g. `install.packages("dplyr", lib="~/R/3.5.1/library")`
+> An alternative method would be to not tinker with the `R_LIBS_USER` environment variable, but instead to get into the habit of specifying the install location when installing, e.g. `install.packages("dplyr", lib="~/R/4.1.1/library")`
 
 > **Note 3:**
 >
