@@ -69,12 +69,15 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 
 ---
 
-<details>
-<summary><b><i>Couldn't get the script to work? Click here for the answer key. </i></b></summary>
- <br>   
- 
-<pre>
- 
+**Couldn't get the script to work?**
+
+	<details>
+	<summary><b><i>Click here for the answer key. </i></b></summary>
+ 	<br>   
+	
+	<p> Your sbatch script shoudl look something like this: 
+	
+	<pre>
 	#!/bin/bash
 	
 	#SBATCH -p priority 		# partition name
@@ -92,10 +95,7 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	
 	# Run the R script
 	Rscript sqrt_input.R 60
-	</pre>
-```
 
-</details>
 
 ---
 
