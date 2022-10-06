@@ -47,12 +47,13 @@ round(sqrt(num), digit=2)
 	
 </details>
 
-### Turn the R script into a job submission script
+### Create a job submission script
 
 1. Using vim or nano, create a new file called `sqrt_R.sbatch`.
 
 2. Open up the new file and add a shebang line.
-3. Now add SLURM/`sbatch` directives at the top of the script requesting the following resources:
+
+3. Next, add SLURM/`sbatch` directives at the top of the script requesting the following resources:
    * Use partition `priority` (`-p`)
    * Request 5 minutes (`-t`)
    * Request 100MB of memory (`--mem`)
