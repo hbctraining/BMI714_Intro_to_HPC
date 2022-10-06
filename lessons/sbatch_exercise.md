@@ -1,46 +1,102 @@
 ## Exercise
 
-Convert existing script to a batch script and run it using the `sbatch` command from Slurm
+Create an R script and add the appropriate slurm directives to run it as a batch script using the `sbatch` command from Slurm.
 
-### Set up
-1. Locate the file `generate_bad_reads_summary.sh` (which was created in the [Loops and Automation lesson](../lessons/06_loops_and_automation.md))
-> *Hint: This file is likely in your `badreads` directory.*
+### Create the R script
+1. Create an R script called `sqrt.R`, using nano or another text editor.
+2. The script will take in a number and return the square root of that number rounded to two decimal places.
+
+<details>
+	<summary><b><i>Click here for the R code</i></b></summary>
+	<br>
+	<p> Code for the script `sqrt.R` is provided below: 
+
 ```bash
-cd ~/unix_lesson/badreads
+#!/usr/bin/env Rscript
+
+# Usage: this Rscript will accept a number and provide the square root of that number rounded to two decimal places.
+# Rscript sqrt_input.R <number>
+
+print("reading in arguments from command line")
+args <- commandArgs(trailingOnly = TRUE)
+
+## commandArgs reads in the arguments as a character vector
+print("converting input to numeric")
+num <- as.numeric(args[1])
+
+print("running the sqrt() and round() functions on the input")
+round(sqrt(num), digit=2)
+               
+```
+</p>
+	
+</details>
+
+4. Once you have created the script, test that it runs well interactively.
+
+<details>
+	<summary><b><i>How to run the R script</i></b></summary>
+	<br>
+	<p> The script can be run from the command line using the `Rscript` command. Don't forget to provide a numeric value as input.
+            
+```
+  Rscript sqrt_input.R 60
 ```
 
-2. Duplicate this file and call the duplicate file `sbatch_generate_bad_reads_summary.sh`. (*Hint: use the `cp` command*)
-```bash
-cp generate_bad_reads_summary.sh sbatch_generate_bad_reads_summary.sh
-```
+</p>
+	
+</details>
 
-3. Create a new directory inside the `badreads` directory called `sbatch_output`.
-```bash
-mkdir sbatch_output
-```
+### Turn the R script into a job submission script
 
-### Update the new shell script
-Using vim open up the file `sbatch_generate_bad_reads_summary.sh` to make some edits. Once inside the file, do the following:
+1. Using vim or nano, create a new file called `sqrt_R.sbatch`.
 
-> *Hint: Remember to change to insert mode in vim before beginning to edit!*
-
-1. Update these two lines of code below, such that the `grep` output in both cases is redirected to the `~/unix_lesson/badreads/sbatch_output/` directory. *Do not change the names of the output files.*
-      ```bash
-          grep -B1 -A2 NNNNNNNNNN $filename > ~/unix_lesson/badreads/${samplename}_badreads.fq
-          
-          grep -cH NNNNNNNNNN $filename >> ~/unix_lesson/badreads/badreads.count.summary
-      ```
-1. Add SLURM/`sbatch` directives at the top of the script requesting the following resources:
+2. Open up the new file and add a shebang line.
+3. Now add SLURM/`sbatch` directives at the top of the script requesting the following resources:
    * Use partition `priority` (`-p`)
    * Request 5 minutes (`-t`)
    * Request 100MB of memory (`--mem`)
    * Request a single core (`-c`)
+   * Give the job a name (`--job-name`)
    * Specify the output file name (`-o`)
    * Specify the error file name (`-e`)
    
-1. Save the file and exit vim.
+4. Load the required modules.
+5. Add the line of code to run the R script. 
+6. Save the file and exit vim.
 
-### Run the new shell script to start a new job on O2
+
+<details>
+	<summary><b><i>Script</i></b></summary>
+	<br>
+            
+```
+
+#!/bin/bash
+
+#SBATCH -p priority 		# partition name
+#SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
+#SBATCH --mem 8G 		# amount of memory requested
+#SBATCH --job-name sqrt_R_script 		# Job name
+#SBATCH -o sqrt.out		# File to which standard out will be written
+#SBATCH -e sqrt.err 		# File to which standard err will be written
+
+# Load required modules
+module load gcc/6.2.0 R/4.1.1
+
+# Point to personal library, if required
+# export R_LIBS_USER="~/R/4.1.1/library"
+
+# Run the R script
+Rscript sqrt_input.R 60
+
+```
+
+</p>
+	
+</details>
+
+### Run the script to start a new job on O2
 1. Run the new script using the `sbatch` command
 
 ### Check the job/run 
@@ -48,7 +104,6 @@ Using vim open up the file `sbatch_generate_bad_reads_summary.sh` to make some e
 1. Check the contents of your current directory -
     * Are there any new files with names ending in `.out` and `.err`?
     * What are the contents of these two files?
-1. Check the contents of `~/unix_lesson/badreads/sbatch_output/`, are the expected files there?
 
 ---
 
