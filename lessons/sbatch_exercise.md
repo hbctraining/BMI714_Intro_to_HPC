@@ -109,7 +109,7 @@ Rscript sqrt_input.R 60
 
 
 
-> ## X11 forwarding
+> ### X11 forwarding
 >  
 > If you want to have images pop up interactively when you are working with R on O2 or even make/save plots during your job, you will need to install and run additional software. 
 > 
