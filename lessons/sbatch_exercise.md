@@ -28,7 +28,7 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	print("running the sqrt() and round() functions on the input")
 	round(sqrt(num), digit=2)            
 
-4. Once you have created the script, test that it runs well interactively.
+4. Once you have created the script, test that it runs well interactively. **Note, you will first need to load the R module!*
 
 	<details>
 	<summary><b><i>How to run the R script</i></b></summary>
@@ -58,8 +58,18 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 6. Save the file and exit vim.
 
 
+### Run the script to start a new job on O2
+1. Run the new script using the `sbatch` command
+
+### Check the job/run 
+1. Use `sacct` to check the status of your job submission
+1. Check the contents of your current directory -
+    * Are there any new files with names ending in `.out` and `.err`?
+    * What are the contents of these two files?
+    
+
 	<details>
-	<summary><b><i>Script</i></b></summary>
+	<summary><b><i>Answer key</i></b></summary>
 	<br>   
 	<pre>
 	#!/bin/bash
@@ -80,14 +90,6 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	# Run the R script
 	Rscript sqrt_input.R 60
 
-### Run the script to start a new job on O2
-1. Run the new script using the `sbatch` command
-
-### Check the job/run 
-1. Use `sacct` to check the status of your job submission
-1. Check the contents of your current directory -
-    * Are there any new files with names ending in `.out` and `.err`?
-    * What are the contents of these two files?
 
 > ### X11 forwarding
 >  
@@ -112,6 +114,8 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 > 
 > Additional instructions and a troubleshooting guide is available on the [HMS-RC's O2 wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely). 
 
+> ### Rstudio on O2
+> Another alternative is to working with R on O2 is to use the O2Portal RStudio App. This app will start the RStudio application on one of the O2 cluster compute nodes. This application allows you to write R code, run it, and create graphs interactively using the RStudio interface. Fore more information [check out the O2 wiki page](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/2233335809/HMS+-+RStudio+on+O2).
 ---
 
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
