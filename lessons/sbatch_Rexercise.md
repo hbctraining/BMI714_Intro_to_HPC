@@ -73,7 +73,8 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 <summary><b><i>Couldn't get the script to work? Click here for the answer key. </i></b></summary>
  <br>   
  
- ```
+ ```bash
+ 
 	#!/bin/bash
 	
 	#SBATCH -p priority 		# partition name
