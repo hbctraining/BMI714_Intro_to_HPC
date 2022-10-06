@@ -12,26 +12,21 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	<br>
 	<p> Code for the script `sqrt.R` is provided below: 
 		
-		<pre>
-		#!/usr/bin/env Rscript
-		
-		# Usage: this Rscript will accept a number and provide the square root of that number rounded to two decimal places.
-		# Rscript sqrt_input.R <number>
-		
-		print("reading in arguments from command line")
-		args <- commandArgs(trailingOnly = TRUE)
-		
-		## commandArgs reads in the arguments as a character vector
-		print("converting input to numeric")
-		num <- as.numeric(args[1])
-		
-		print("running the sqrt() and round() functions on the input")
-		round(sqrt(num), digit=2)            
-		</pre>
+	<pre>
+	#!/usr/bin/env Rscript
 	
-	</p>	
+	# Usage: this Rscript will accept a number and provide the square root of that number rounded to two decimal places.
+	# Rscript sqrt_input.R <number>
 	
-	</details>
+	print("reading in arguments from command line")
+	args <- commandArgs(trailingOnly = TRUE)
+	
+	## commandArgs reads in the arguments as a character vector
+	print("converting input to numeric")
+	num <- as.numeric(args[1])
+	
+	print("running the sqrt() and round() functions on the input")
+	round(sqrt(num), digit=2)            
 
 4. Once you have created the script, test that it runs well interactively.
 
