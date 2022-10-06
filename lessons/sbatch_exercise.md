@@ -106,6 +106,32 @@ Rscript sqrt_input.R 60
     * Are there any new files with names ending in `.out` and `.err`?
     * What are the contents of these two files?
 
+
+
+
+> ## X11 forwarding
+>  
+> If you want to have images pop up interactively when you are working with R on O2 or even make/save plots during your job, you will need to install and run additional software. 
+> 
+> * Windows users will need [Xming](http://sourceforge.net/projects/xming/)
+> * MacOSX users will need [Xquartz](http://xquartz.macosforge.org/landing/)
+> 
+> **Note, this section is not hands-on, please try it out on your own time.**
+> 
+> Once you have the correct software installed, make sure it is running before you log on to O2 with the additional `-XY` argument.
+> ```bash
+> $ ssh -XY ecommonsID@o2.hms.harvard.edu
+> ```
+> 
+> Once on O2, you can start an interactive session with the additional `--x11` argument.
+> ```bash
+> $ srun --pty -p interactive -t 0-12:00 --x11 /bin/bash
+> ```
+> 
+> You can also start a batch job with the additional `--x11=batch` argument.
+> 
+> Additional instructions and a troubleshooting guide is available on the [HMS-RC's O2 wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely). 
+
 ---
 
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
