@@ -6,46 +6,46 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 1. Create an R script called `sqrt.R`, using nano or another text editor.
 2. The script will take in a number and return the square root of that number rounded to two decimal places.
 
-<details>
+	<details>
 	<summary><b><i>Click here for the R code</i></b></summary>
 	<br>
 	<p> Code for the script `sqrt.R` is provided below: 
 
-```bash
-#!/usr/bin/env Rscript
-
-# Usage: this Rscript will accept a number and provide the square root of that number rounded to two decimal places.
-# Rscript sqrt_input.R <number>
-
-print("reading in arguments from command line")
-args <- commandArgs(trailingOnly = TRUE)
-
-## commandArgs reads in the arguments as a character vector
-print("converting input to numeric")
-num <- as.numeric(args[1])
-
-print("running the sqrt() and round() functions on the input")
-round(sqrt(num), digit=2)
-               
-```
-</p>
+	```bash
+	#!/usr/bin/env Rscript
 	
-</details>
+	# Usage: this Rscript will accept a number and provide the square root of that number rounded to two decimal places.
+	# Rscript sqrt_input.R <number>
+	
+	print("reading in arguments from command line")
+	args <- commandArgs(trailingOnly = TRUE)
+	
+	## commandArgs reads in the arguments as a character vector
+	print("converting input to numeric")
+	num <- as.numeric(args[1])
+	
+	print("running the sqrt() and round() functions on the input")
+	round(sqrt(num), digit=2)            
+	```
+	</p>
+		
+	</details>
 
 4. Once you have created the script, test that it runs well interactively.
 
-<details>
-	<summary><b><i>How to run the R script</i></b></summary>
-	<br>
-	<p> The script can be run from the command line using the `Rscript` command. Don't forget to provide a numeric value as input.
-            
-```
-  Rscript sqrt_input.R 60
-```
-
-</p>
+	<details>
+		<summary><b><i>How to run the R script</i></b></summary>
+		<br>
+		<p> The script can be run from the command line using the `Rscript` command. Don't forget to provide a numeric value as input.
+	            
+	```
+	  Rscript sqrt_input.R 60
+	```
 	
-</details>
+	</p>
+		
+	</details>
+
 
 ### Create a job submission script
 
@@ -67,35 +67,35 @@ round(sqrt(num), digit=2)
 6. Save the file and exit vim.
 
 
-<details>
-	<summary><b><i>Script</i></b></summary>
-	<br>
-            
-```
-
-#!/bin/bash
-
-#SBATCH -p priority 		# partition name
-#SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
-#SBATCH --mem 8G 		# amount of memory requested
-#SBATCH --job-name sqrt_R_script 		# Job name
-#SBATCH -o sqrt.out		# File to which standard out will be written
-#SBATCH -e sqrt.err 		# File to which standard err will be written
-
-# Load required modules
-module load gcc/6.2.0 R/4.1.1
-
-# Point to personal library, if required
-# export R_LIBS_USER="~/R/4.1.1/library"
-
-# Run the R script
-Rscript sqrt_input.R 60
-
-```
-
-</p>
+	<details>
+		<summary><b><i>Script</i></b></summary>
+		<br>
+	            
+	```
 	
-</details>
+	#!/bin/bash
+	
+	#SBATCH -p priority 		# partition name
+	#SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
+	#SBATCH --mem 8G 		# amount of memory requested
+	#SBATCH --job-name sqrt_R_script 		# Job name
+	#SBATCH -o sqrt.out		# File to which standard out will be written
+	#SBATCH -e sqrt.err 		# File to which standard err will be written
+	
+	# Load required modules
+	module load gcc/6.2.0 R/4.1.1
+	
+	# Point to personal library, if required
+	# export R_LIBS_USER="~/R/4.1.1/library"
+	
+	# Run the R script
+	Rscript sqrt_input.R 60
+	
+	```
+	
+	</p>
+		
+	</details>
 
 ### Run the script to start a new job on O2
 1. Run the new script using the `sbatch` command
