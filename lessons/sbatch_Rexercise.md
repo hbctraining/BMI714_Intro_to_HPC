@@ -95,7 +95,6 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	
 	# Run the R script
 	Rscript sqrt_input.R 60
- </details>
 
 ---
 
