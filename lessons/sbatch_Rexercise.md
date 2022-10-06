@@ -67,31 +67,34 @@ Create an R script and add the appropriate slurm directives to run it as a batch
     * Are there any new files with names ending in `.out` and `.err`?
     * What are the contents of these two files?
 
-	<details>
-	<summary><b><i>Couldn't get the script to work? Click here for the answer key.</i></b></summary>
-	
-	<br>
-	<p> Your sbatch script should look something like this: 
-	
-	<pre>
-	#!/bin/bash
-	
-	#SBATCH -p priority 		# partition name
-	#SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
-	#SBATCH --mem 8G 		# amount of memory requested
-	#SBATCH --job-name sqrt_R_script 		# Job name
-	#SBATCH -o sqrt.out		# File to which standard out will be written
-	#SBATCH -e sqrt.err 		# File to which standard err will be written
-	
-	# Load required modules
-	module load gcc/6.2.0 R/4.1.1
-	
-	# Point to personal library, if required
-	# export R_LIBS_USER="~/R/4.1.1/library"
-	
-	# Run the R script
-	Rscript sqrt_input.R 60
+<details>
+<summary><b><i>Couldn't get the script to work? Click here for the answer key.</i></b></summary>
+<br>
+<p> Your sbatch script should look something like this: 
+<pre>
+#!/bin/bash
 
+#SBATCH -p priority 		# partition name
+#SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
+#SBATCH --mem 8G 		# amount of memory requested
+#SBATCH --job-name sqrt_R_script 		# Job name
+#SBATCH -o sqrt.out		# File to which standard out will be written
+#SBATCH -e sqrt.err 		# File to which standard err will be written
+
+# Load required modules
+module load gcc/6.2.0 R/4.1.1
+
+# Point to personal library, if required
+# export R_LIBS_USER="~/R/4.1.1/library"
+
+# Run the R script
+Rscript sqrt_input.R 60
+
+</pre>
+</p>
+</details>
+
+***
 
 > ### X11 forwarding
 >  
