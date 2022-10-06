@@ -33,16 +33,10 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	<details>
 	<summary><b><i>How to run the R script</i></b></summary>
 	<br>
-	<p> 
-	The script can be run from the command line using the `Rscript` command. Don't forget to provide a numeric value as input.
+	<p> The script can be run from the command line using the `Rscript` command. Don't forget to provide a numeric value as input.
 	            
-	```bash
-	  Rscript sqrt_input.R 60
-	```
-	
-	</p>	
-	</details>
-
+	<pre>
+	Rscript sqrt_input.R 60
 
 ### Create a job submission script
 
@@ -66,9 +60,8 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 
 	<details>
 	<summary><b><i>Script</i></b></summary>
-	<br>
-	            
-	```
+	<br>   
+	<pre>
 	#!/bin/bash
 	
 	#SBATCH -p priority 		# partition name
@@ -86,10 +79,6 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	
 	# Run the R script
 	Rscript sqrt_input.R 60
-	```
-	
-	</p>
-	</details>
 
 ### Run the script to start a new job on O2
 1. Run the new script using the `sbatch` command
@@ -99,9 +88,6 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 1. Check the contents of your current directory -
     * Are there any new files with names ending in `.out` and `.err`?
     * What are the contents of these two files?
-
-
-
 
 > ### X11 forwarding
 >  
