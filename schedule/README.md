@@ -34,12 +34,12 @@ No installation requirements.
 
 | Lessons            | Estimated Duration |
 |:------------------------|:----------|
-|[Introduction to HPC and using the O2 cluster](https://hbctraining.github.io/Intro-to-shell-flipped/lectures/HPC_intro_O2_July2022.pdf) |60 min |
-|[Exercise]() |15 min |
-|[Data storage on O2](https://hbctraining.github.io/Intro-to-shell-flipped/lectures/HPC_intro_O2_July2022.pdf) |15 min |
+|[Introduction to HPC and using the O2 cluster]() |60 min |
+|[Exercise](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/sbatch_Rexercise.html) |15 min |
+|[Data storage on O2]() |15 min |
 
 ## Post-class resources
-* [Using R on the O2 cluster](../lessons/R_on_o2.md)
+* [Creating Personal R libraries on O2](../lessons/R_libraries_on_O2.md)
 * [Practice exercises for using R on O2](../lessons/R_on_O2_class_exercises.md)
 
 *These materials have been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
