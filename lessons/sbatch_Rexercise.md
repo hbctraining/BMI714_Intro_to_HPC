@@ -28,7 +28,7 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	print("running the sqrt() and round() functions on the input")
 	round(sqrt(num), digit=2)            
 
-4. Once you have created the script, test that it runs well interactively. **Note, you will first need to load the R module!**
+3. Once you have created the script, test that it runs well interactively. **Note, you will first need to load the R module!**
 
 	<details>
 	<summary><b><i>How to run the R script</i></b></summary>
@@ -67,15 +67,12 @@ Create an R script and add the appropriate slurm directives to run it as a batch
     * Are there any new files with names ending in `.out` and `.err`?
     * What are the contents of these two files?
 
-
-
-**Couldn't get the script to work?**
-
-<details>
-<summary><b><i>Click here for the answer key. </i></b></summary>
- <br>   
+	<br>
+	<details>
+	<summary><b><i>Couldn't get the script to work? Click here for the answer key.</i></b></summary>
 	
-<p> Your sbatch script should look something like this: 
+	<br>
+	<p> Your sbatch script should look something like this: 
 	
 	<pre>
 	#!/bin/bash
@@ -96,7 +93,6 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 	# Run the R script
 	Rscript sqrt_input.R 60
 
----
 
 > ### X11 forwarding
 >  
