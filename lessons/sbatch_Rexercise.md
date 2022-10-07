@@ -3,11 +3,11 @@
 Create an R script and add the appropriate slurm directives to run it as a batch script using the `sbatch` command from Slurm.
 
 ### Create the R script
-1. Type `nano sqrt_input.R` at the command prompt. This will open up a new script file where you can add the contents of your R script.
+* Type `nano sqrt_input.R` at the command prompt. This will open up a new script file where you can add the contents of your R script.
 
 > **NOTE:** `nano` is a text editor that you can use when working on the command line. There are other editors you can choose from. For more information on command-line text editors, [check out this lesson](https://hbctraining.github.io/Intro-to-shell-flipped/lessons/03_working_with_files.html#writing-files).
 
-2. The script will take in a number and return the square root of that number rounded to two decimal places. You can copy and paste the code below into the text editor.
+* The script will take in a number and return the square root of that number rounded to two decimal places. You can copy and paste the code below into the text editor.
 
 ```r
 
@@ -27,9 +27,9 @@ print("running the sqrt() and round() functions on the input")
 round(sqrt(num), digit=2)    
 ```
 
-3. Now to save this file press <kbd>CTRL + O</kbd>, followed by the return key. You have now written the changes to file. You  can press <kbd>CTRL + X</kbd> to exit
+* Now to save this file press <kbd>CTRL + O</kbd>, followed by the return key. You have now written the changes to file. You  can press <kbd>CTRL + X</kbd> to exit
  
-4. Once you have created the script, test that it runs well interactively. **Note, you will first need the R module loaded in your current O2 session, if it's not already there!**
+* Once you have created the script, test that it runs well interactively. **Note, you will first need the R module loaded in your current O2 session, if it's not already there!**
 
 	<details>
 	<summary><b><i>How to run the R script</i></b></summary>
