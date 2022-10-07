@@ -32,6 +32,14 @@ No installation requirements.
 
 ## In-class: Introduction to High-Performance Computing
 
+> **NOTE:** The following lessons include code that you can follow along with on your own computers. In order to do so, you will need to be **logged into O2**. You can login with your assigned eCommons ID using the command below:
+> 
+> `ssh eCommonsID@o2.hms.harvard.edu` 
+> 
+> Press the return/enter key and you should receive a prompt for your password. Type in your password and note that the cursor will not move as you type it in. Once logged in, you should see the O2 icon, some news, and a new command prompt. Now, you are all set!
+
+
+
 | Lessons            | Estimated Duration |
 |:------------------------|:----------|
 |[Introduction to HPC and using the O2 cluster](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_Oct2022_BMI713.pdf) |60 min |
