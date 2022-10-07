@@ -3,32 +3,33 @@
 Create an R script and add the appropriate slurm directives to run it as a batch script using the `sbatch` command from Slurm.
 
 ### Create the R script
-1. Create an R script called `sqrt.R`, using nano or another text editor.
-2. The script will take in a number and return the square root of that number rounded to two decimal places.
+1. Type `nano sqrt_input.R` at the command prompt. This will open up a new script file where you can add the contents of your R script.
 
-	<details>
-	<summary><b><i>Click here for the R code</i></b></summary>
-	
-	<br>
-	<p> Code for the script `sqrt.R` is provided below: 
-		
-	<pre>
-	#!/usr/bin/env Rscript
-	
-	# Usage: this Rscript will accept a number and provide the square root of that number rounded to two decimal places.
-	# Rscript sqrt_input.R <number>
-	
-	print("reading in arguments from command line")
-	args <- commandArgs(trailingOnly = TRUE)
-	
-	## commandArgs reads in the arguments as a character vector
-	print("converting input to numeric")
-	num <- as.numeric(args[1])
-	
-	print("running the sqrt() and round() functions on the input")
-	round(sqrt(num), digit=2)            
+> **NOTE:** `nano` is a text editor that you can use when working on the command line. There are other editors you can choose from. For more information on command-line text editors, [check out this lesson](https://hbctraining.github.io/Intro-to-shell-flipped/lessons/03_working_with_files.html#writing-files).
 
-3. Once you have created the script, test that it runs well interactively. **Note, you will first need to load the R module!**
+2. The script will take in a number and return the square root of that number rounded to two decimal places. You can copy and paste the code below into the text editor.
+
+```r
+
+#!/usr/bin/env Rscript
+	
+# Usage: this Rscript will accept a number and provide the square root of that number rounded to two decimal places.
+# Rscript sqrt_input.R <number>
+	
+print("reading in arguments from command line")
+args <- commandArgs(trailingOnly = TRUE)
+	
+## commandArgs reads in the arguments as a character vector
+print("converting input to numeric")
+num <- as.numeric(args[1])
+	
+print("running the sqrt() and round() functions on the input")
+round(sqrt(num), digit=2)    
+```
+
+3. Now to save this file press <kbd>CTRL + O</kbd>, followed by the return key. You have now written the changes to file. You  can press <kbd>CTRL + X</kbd> to exit
+ 
+4. Once you have created the script, test that it runs well interactively. **Note, you will first need the R module loaded in your current O2 session, if it's not already there!**
 
 	<details>
 	<summary><b><i>How to run the R script</i></b></summary>
@@ -40,9 +41,9 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 
 ### Create a job submission script
 
-1. Using vim or nano, create a new file called `sqrt_R.sbatch`.
+1. Using nano, create a new file called `sqrt_R.sbatch`.
 
-2. Open up the new file and add a shebang line.
+2. Open up the new file and add a shebang line `#!/bin/bash`.
 
 3. Next, add SLURM/`sbatch` directives at the top of the script requesting the following resources:
    * Use partition `priority` (`-p`)
@@ -53,9 +54,9 @@ Create an R script and add the appropriate slurm directives to run it as a batch
    * Specify the output file name (`-o`)
    * Specify the error file name (`-e`)
    
-4. Load the required modules.
+4. Add the line of code to load the required modules.
 5. Add the line of code to run the R script. 
-6. Save the file and exit vim.
+6. Save the file and exit the nano text editor.
 
 
 ### Run the script to start a new job on O2
