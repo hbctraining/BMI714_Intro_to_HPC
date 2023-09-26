@@ -87,9 +87,6 @@ If you need help figuring out what options are available for slurm directives, t
 # Load required modules
 module load gcc/6.2.0 R/4.1.1
 
-# Point to personal library, if required
-# export R_LIBS_USER="~/R/4.1.1/library"
-
 # Run the R script
 Rscript sqrt_input.R 60
 
@@ -99,28 +96,6 @@ Rscript sqrt_input.R 60
 
 ***
 
-> ### X11 forwarding
->  
-> If you want to have images pop up interactively when you are working with R on O2 or even make/save plots during your job, you will need to install and run additional software. 
-> 
-> * Windows users will need [Xming](http://sourceforge.net/projects/xming/)
-> * MacOSX users will need [Xquartz](http://xquartz.macosforge.org/landing/)
-> 
-> **Note, this section is not hands-on, please try it out on your own time.**
-> 
-> Once you have the correct software installed, make sure it is running before you log on to O2 with the additional `-XY` argument.
-> ```bash
-> $ ssh -XY ecommonsID@o2.hms.harvard.edu
-> ```
-> 
-> Once on O2, you can start an interactive session with the additional `--x11` argument.
-> ```bash
-> $ srun --pty -p interactive -t 0-12:00 --x11 /bin/bash
-> ```
-> 
-> You can also start a batch job with the additional `--x11=batch` argument.
-> 
-> Additional instructions and a troubleshooting guide is available on the [HMS-RC's O2 wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely). 
 
 
 ---
