@@ -123,16 +123,27 @@ Type 'q()' to quit R.
 > 
 ```
 
-At the command prompt you can provide lines of code to execute tasks. Type in a simple function that you are familiar with, for example `sessionInfo()`:
 
-```r
-> sessionInfo()
+### Installing Packages on O2
+
+Packages are collections of R functions, data, and compiled code in a well-defined format, created to add specific functionality. There are 10,000+ user contributed packages and growing.
+
+There are a set of **standard (or base) packages which are considered part of the R source code and automatically available as part of your R installation**. Base packages contain the basic functions that allow R to work, and enable standard statistical and graphical functions on datasets.
+
+You can check what libraries are loaded in your current R session by typing into the console:
+
+```bash
+sessionInfo() #Print version information about R, the OS and attached or loaded packages
+
+# OR
+
+search() #Gives a list of attached packages
 ```
 
+The more you work with R, you will come to realize that there is a cornucopia of R packages that offer a wide variety of functionality. To use **additional packages will require installation**. Many packages can be installed from the [CRAN](http://cran.r-project.org/) or [Bioconductor](https://www.bioconductor.org/) repositories.
 
-### Installing packages on O2
 
-Now, let's try loading the `dplyr` library.
+Let's try loading the `dplyr` library.
 
 ```r
 > library(dplyr)
@@ -144,23 +155,28 @@ We get an error that there is no such package.
 Error in library("dplyr") : there is no package called ‘dplyr’
 ```
 
-If we try to install it using `install.packages("dplyr")`, we get the following error and a suggestion to create a personal library. 
+If were working in R on our personal computer, the next logical step would be to try and install the package. However, if we try that same code her on O2, we get an error and a suggestion to create a personal library. 
 
 ```
+install.packages("dplyr")
+
+
 Warning in install.packages("dplyr") :
   'lib = "/n/app/R/4.1.1/lib64/R/library"' is not writable
 Would you like to use a personal library instead? (yes/No/cancel)
 ```
 
-Based on this message it looks like the main library folder cannot be modified by us. Instead, the cluster has been set up to allow every user to create their own personal libraries for the distinct versions of R, this is to account for every user having different needs.
+Based on this message it looks like the main library folder cannot be modified by us. Instead, the cluster has been set up to allow every **user to create their own personal libraries for the distinct versions of R**. This is to account for every user having different needs.
 
-Say `cancel` or do Ctrl + C to escape back to the R command prompt and **quit out of R without saving the workspace image**.
+**Type `cancel`** or do Ctrl + C to escape back to the R command prompt and **quit out of R without saving the workspace image**. Before we can install any packages let's get you setup with personal libraries.
 
 ```r
 > q()
 ```
 
 ### Setting up the folder and local environment to allow package installations
+
+The details we provide in this section is a condensed version of what is provided on the [HMSRC O2 Wiki](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662168/Personal+R+Packages). We encourage you to peruse the docs to get more detailed information for working with R on O2.
 
 The following commands can be run in the shell at the command prompt.
 ```bash
