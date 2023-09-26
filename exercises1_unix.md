@@ -15,10 +15,15 @@
 	* List all of the files in /bin that end with the letter 'o'
 	* BONUS: List all of the files in /bin that contain the letter 'a' or 'c'. (This was not covered in the lesson)
 
-### Exercise 3: "Examining files, searching and redirection"
+### Exercise 3: "Examining files"
 
 7. Print the contents of `sequences-copy.fq` to the screen. 
 8. Use the `head` command to keep only the frst two sequences of this file. 
+
+### BONUS: "Searching and redirection" 
+
+> **NOTE:** Before you tackle these questions, it will be helpful to look over the [Advanced Shell topics](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/Shell_basics#advanced-shell-topics)
+
 9. The last two lines of the file `sequences-copy.fq` represent a protein sequence. Use the `tail` command to take those two lines and redirect them into a new file called `protein.fa`.
 10. Use `grep` to search for the patterm `CAGCT` in the `sequences-copy.fq` file. Use your shell knowledge to count how many times that pattern appears in the file. Now use the `man` pages to find out how you can count using the `grep` command. 
 

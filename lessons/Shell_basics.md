@@ -45,14 +45,14 @@ Just like with `>` in R, when you see the `$`, it means that bash is ready to st
 
 The command prompt will have some characters before it, something like `[rc_training01@login01 ~]`, this is telling you what the name of the computer you are working on is.
 
-The first command we will type on the command prompt will be to start a so-called "interactive session" on O2.
+The first command we will type on the command prompt will be to start a so-called "interactive session" on O2. This will take us off of the login node and on to a compute node. *We talked about this last week during the lecture on HPC and O2. For more detail, and to refresh your memory we have the [slides linked here](https://github.com/hbctraining/Intro-to-Unix-QMB/blob/master/slides/HPC_intro_O2.pdf)* 
+
 
 ```bash
 $ srun -p interactive --pty --mem 8000 -t 0-12:00 /bin/bash 
 ```
 
-Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. They should say something like `[rc_training01@compute-a-16-73 ~]`. *We will be explaining what this means in more detail later when we talk about HPC and O2.* 
-
+Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. They should say something like `[rc_training01@compute-a-16-73 ~]`. 
 Make sure that your command prompt is now preceded by a character string that contains the word "compute". We want to do all of our work on the worker nodes, and not on the head/login node.
 
 Copy the example data folder to your home directory using the following command:
@@ -404,103 +404,13 @@ To summarize, while you are in your home directory, the commands `ls ~`, `ls ~/.
 - <kbd>Ctrl + A</kbd> will bring you to the start of the command you are writing.
 - <kbd>Ctrl + E</kbd> will bring you to the end of the command.
 
-## Searching files
+## Advanced Shell Topics:
+We have only scratched the surface of working with Shell. If you plan on working in a command-line environment, you may want to also take the time to peruse some of our other materials below. In terms of what you will need to follow along in class, this lesson on its will suffice.
 
-We showed a little how to search within a file using `less`. We can also
-search within files without even opening them, using `grep`. Grep is a command-line
-utility for searching plain-text data sets for lines matching a string or regular expression.
-Let's give it a try!
+* [Searching files and redirection](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/searching_redirection)
+* [Loops and shell scripts](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/loops_and_scripts)
 
-Suppose we want to see how many reads in our file are really bad, with 10 consecutive Ns  
-Let's search for the string `NNNNNNNNNN` in file 
-
-`$ cd ~/unix-intro/raw_fastq`
-
-`$ grep NNNNNNNNNN Mov10_oe_1.subset.fq`
-
-We get back a lot of lines.  What if we want to see the whole fastq record for each of these reads?
-We can use the `-B` and `-A` arguments for grep to return the matched line plus one before (`-B 1`) and two
-lines after (`-A 2`). Since each record is four lines and the second line is the sequence, this should
-give the whole record.
-
-`$ grep -B1 -A2 NNNNNNNNNN Mov10_oe_1.subset.fq`
-
-for example:
-
-	@HWI-ST330:304:H045HADXX:1:1101:1111:61397
-	CACTTGTAAGGGCAGGCCCCCTTCACCCTCCCGCTCCTGGGGGANNNNNNNNNNANNNCGAGGCCCTGGGGTAGAGGGNNNNNNNNNNNNNNGATCTTGG
-	+
-	@?@DDDDDDHHH?GH:?FCBGGB@C?DBEGIIIIAEF;FCGGI#########################################################
-	--
-	@HWI-ST330:304:H045HADXX:1:1101:1106:89824
-	CACAAATCGGCTCAGGAGGCTTGTAGAAAAGCTCAGCTTGACANNNNNNNNNNNNNNNNNGNGNACGAAACNNNNGNNNNNNNNNNNNNNNNNNNGTTGG
-	+
-	?@@DDDDDB1@?:E?;3A:1?9?E9?<?DGCDGBBDBF@;8DF#########################################################
-
-
-## Redirection
-
-This is great, now we know how to pull out lines that match a pattern of interest. But all those
-sequences just went whizzing by with grep. **How can we capture them?**
-
-We can do that with something called "redirection". The idea is that
-we're redirecting the output from the terminal (all the stuff that went
-whizzing by) to something else. In this case, we want to print it
-to a file, so that we can look at it later.
-
-The redirection command for putting something in a file is `>`
-
-Let's try it out and put all the sequences that contain 'NNNNNNNNNN'
-from all the files in to another file called `bad_reads.txt`.
-
-`$ grep -B1 -A2 NNNNNNNNNN Mov10_oe_1.subset.fq > bad_reads.txt`
-
-The prompt should sit there a little bit, and then it should look like nothing
-happened. But type `ls`. You should have a new file called `bad_reads.txt`. Take
-a look at it and see if it has what you think it should.
-
-If we use '>>', it will append to rather than overwrite a file.  This can be useful for saving more than one search, for example:
-    
-`$ grep -B1 -A2 NNNNNNNNNN Mov10_oe_2.subset.fq >> bad_reads.txt`
-
-Since our `bad_reads.txt` file isn't a raw_fastq file, we should move it to a different location within our directory. We decide to move it to the `other` folder using the command `mv`. 
-
-`$ mv bad_reads.txt ../other/`
-
-There's one more useful redirection method that we're going to show, and that's
-called the pipe, written as `|`. It's probably not a key on
-your keyboard you use very much. What `|` does is take the output of one command that went
-scrolling by on the terminal and runs it through another command.
-When it was all whizzing by before, we wished we could just slow it down and
-look at it, like we can with `less`. Well it turns out that we can! We pipe
-the `grep` command to `less`
-
-`$ grep -B1 -A2 NNNNNNNNNN Mov10_oe_1.subset.fq | less`
-
-Now we can use the arrows to scroll up and down and use `q` to get out.
-
-We can also do something tricky and use the command `wc`. `wc` stands for
-*word count*. It counts the number of lines or characters. So, we can use
-it to count the number of lines we're getting back from our `grep` command.
-And that will magically tell us how many sequences we're finding.
-
-`$ grep NNNNNNNNNN Mov10_oe_1.subset.fq | wc`
-
-This command tells us the number of lines, words and characters in the file. If we
-just want the number of lines, we can use the `-l` flag for `lines`.
-
-`$ grep NNNNNNNNNN Mov10_oe_1.subset.fq | wc -l`
-
-Redirecting is not super intuitive, but it's really powerful for stringing
-together these different commands, so you can do whatever you need to do.
-
-The philosophy behind these commands is that none of them
-really do anything all that impressive. BUT when you start chaining
-them together, you can do some really powerful things really
-efficiently. If you want to be proficient at using the shell, you must
-learn to become proficient with the pipe and redirection operators:
-`|`, `>`, `>>`.
-
+***
 
 ## Help and resources
 
@@ -517,7 +427,7 @@ a shell command are doing.
 
 Software Carpentry tutorial: [The Unix shell](http://software-carpentry.org/v4/shell/index.html)
 
-General help:
+**General help**:
 - http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html
 - man bash
 - Google - if you don't know how to do something, try Googling it. Other people
