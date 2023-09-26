@@ -1,5 +1,44 @@
+---
+title: Creating R libraries on O2
+authors: Will Gammerdinger, Meeta Mistry
+date: "Tuesday, September 26, 2023"
+---
+Approximate time: 40 minutes
 
-## R Personal Libraries on O2
+## Learning Objectives
+
+* Describe the advantages of using R on HPC
+* Create personal R libraries on O2
+* Utilize installed packages on O2
+  
+## Scaling up R Computation with HPC Resources
+
+In the last session we demonstrated the use of R in a high performance compute environment using a very basic R script. In this lesson we would like to expand on that by demonstrating how best to set yourself if you plan on using R on O2.
+
+
+<p align="center">
+<img src="../img/R-hpc.png" width="400">
+</p>
+
+
+### Why use R on the cluster?
+If you are working with small(er) data files, using R on your personal computer will suffice. However, once the data become large there are a few reasons why it might be to your advantage to switch to using R on a high performance compute cluster.
+
+* **Increased** access to **compututational resources**
+    * Large datasets have increased memory requirements for processing
+    * R can be built and linked to libraries which utilizes multi-core technology for automatic parallel execution
+* Access to **different R versions**
+    * Especially helpful for reproducing older analyses
+    * R modules have been installed and are ready to use
+* Run **R in a non-interactive session**
+    * Can submit multiple R scripts as separate jobs running in the background
+command Line parameters 
+* **Running an R script with parameters**. As we showed previously, we can create R scripts which take user arguments as input. This can be helpful for:
+    *  Repeated analyses on different datasets
+    *  Independent analysis tasks for a larger dataset
+ 
+
+## Using R on O2
 
 Let's begin by logging in, if you haven't already done so.
 
@@ -7,7 +46,7 @@ Let's begin by logging in, if you haven't already done so.
 ssh eCommonsID@o2.hms.harvard.edu
 ```
 
-The first command we will type on the command prompt will be to **start an "interactive session" on O2**. This will take us off of the login node and on to a compute node. *We talked about this in-class during the lecture on HPC and O2. For more detail, and to refresh your memory we have the [slides linked here]()* 
+The first command we will type on the command prompt will be to **start an "interactive session" on O2**. This will take us off of the login node and put us on to a compute node. *We talked about this in-class during the lecture on HPC and O2. For more detail, and to refresh your memory we have the [slides linked here](https://github.com/mistrm82/Intro-to-Unix-QMB/blob/master/slides/HPC_intro_O2_Oct2023_BMI713.pdf)* 
 
 ```bash
 $ srun -p interactive --pty --mem 8G -t 0-12:00 /bin/bash 
@@ -18,27 +57,73 @@ Make sure that your command prompt is now preceded by a character string that co
 
 ### Loading the appropriate R module
 
-Several versions of R are available on O2 as modules.
+In order to use R on O2, we need to first load the module. There are several versions of R are available as modules.
 
 ```bash
 $ module spider R
 ```
 
-Next, let's check if we can directly load the `R/4.1.1` module or if we need to do anything special.
+```bash
+---------------------------------------------------------------------------------------------------------------
+  R:
+---------------------------------------------------------------------------------------------------------------
+    Description:
+      R is a free software environment for statistical computing and graphics, includes extra libraries
+
+     Versions:
+        R/3.2.5
+        R/3.3.3
+        R/3.4.1-extra
+        R/3.4.1
+        R/3.5.1-extra
+        R/3.5.1
+        R/3.6.1
+        R/4.0.1
+        R/4.1.1
+        R/4.1.2
+        R/4.2.1
+        R/4.3.1
+```
+
+We will want to use R 4.1.1 for the exercises in this lesson. Before we load it let's check to see if we need to do anything special before.
 
 ```bash
 $ module spider R/4.1.1
 ```
 
-Now that we have a better idea of what we need to do, let's load the R module and get started.
+**Turns out that we first need to load the gcc 6.2.0 compiler before loading R.** 
 
 ```bash
 $ module load gcc/6.2.0 R/4.1.1
-
-$ R
 ```
 
-The terminal window should now turn into the R console with the R prompt `>`. Try running a function like sessionInfo():
+Now that we have R loaded, to use it we simply type in R to the terminal window and press the return key. You will see that you have successfully moved away from the shell command prompt and into **the R console with the R prompt `>`**.
+
+```bash
+$ R
+
+R version 4.1.1 (2021-08-10) -- "Kick Things"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> 
+```
+
+At the command prompt you can provide lines of code to execute tasks. Type in a simple function that you are familiar with, for example `sessionInfo()`:
 
 ```r
 > sessionInfo()
@@ -109,6 +194,28 @@ Now if you were to start R and try `install.pacakges("dplyr")`, it should not gi
 >
 > Talk to the folks at HMS RC to find out which packages are already installed. For additional information please take a look at their [online "how-to" guide](https://wiki.rc.hms.harvard.edu/display/O2/Personal+R+Packages).
 
+> ### X11 forwarding
+>  
+> If you want to have images pop up interactively when you are working with R on O2 or even make/save plots during your job, you will need to install and run additional software. 
+> 
+> * Windows users will need [Xming](http://sourceforge.net/projects/xming/)
+> * MacOSX users will need [Xquartz](http://xquartz.macosforge.org/landing/)
+> 
+> **Note, this section is not hands-on, please try it out on your own time.**
+> 
+> Once you have the correct software installed, make sure it is running before you log on to O2 with the additional `-XY` argument.
+> ```bash
+> $ ssh -XY ecommonsID@o2.hms.harvard.edu
+> ```
+> 
+> Once on O2, you can start an interactive session with the additional `--x11` argument.
+> ```bash
+> $ srun --pty -p interactive -t 0-12:00 --x11 /bin/bash
+> ```
+> 
+> You can also start a batch job with the additional `--x11=batch` argument.
+> 
+> Additional instructions and a troubleshooting guide is available on the [HMS-RC's O2 wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely). 
 
 ***
 
