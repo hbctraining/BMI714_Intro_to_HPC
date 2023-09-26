@@ -168,15 +168,21 @@ Would you like to use a personal library instead? (yes/No/cancel)
 
 Based on this message it looks like the main library folder cannot be modified by us. Instead, the cluster has been set up to allow every **user to create their own personal libraries for the distinct versions of R**. This is to account for every user having different needs.
 
-**Type `cancel`** or do Ctrl + C to escape back to the R command prompt and **quit out of R without saving the workspace image**. Before we can install any packages let's get you setup with personal libraries.
+**Type `cancel`** or do Ctrl + C to escape back to the R command prompt and **quit out of R without saving the workspace image**. Before we can install any packages let's get setup with personal libraries.
 
 ```r
 > q()
 ```
 
-### Setting up the folder and local environment to allow package installations
+### Creating Personal R Libraries 
 
-The details we provide in this section is a condensed version of what is provided on the [HMSRC O2 Wiki](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662168/Personal+R+Packages). We encourage you to peruse the docs to get more detailed information for working with R on O2.
+> **NOTE:** The details we provide in this section is a condensed version of what is provided on the [HMSRC O2 Wiki](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662168/Personal+R+Packages). We encourage you to peruse the docs to get more detailed information for working with R on O2 and/or talk to the folks at HMS RC when troubleshooting.
+
+A personal R library is basically a space in your home folder which is dedicated for source code related to any R packages you choose to install. Once you have a package installed for a specific version of R, you simply point to that directory when loading your libraries. There are two main things you need to do:
+
+1. Create a  folder for your libraries
+2. Define that space (path to the directory) as an environment variable, so R knows to look there when loading libraries
+3. 
 
 The following commands can be run in the shell at the command prompt.
 ```bash
@@ -208,7 +214,7 @@ Now if you were to start R and try `install.pacakges("dplyr")`, it should not gi
 
 > **Note 3:**
 >
-> Talk to the folks at HMS RC to find out which packages are already installed. For additional information please take a look at their [online "how-to" guide](https://wiki.rc.hms.harvard.edu/display/O2/Personal+R+Packages).
+> [online "how-to" guide](https://wiki.rc.hms.harvard.edu/display/O2/Personal+R+Packages).
 
 > ### X11 forwarding
 >  
