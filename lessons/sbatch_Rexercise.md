@@ -41,6 +41,8 @@ round(sqrt(num), digit=2)
 
 ### Create a job submission script
 
+If you need help figuring out what options are available for slurm directives, the HMSRC has a [great wiki page](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1586793632/Using+Slurm+Basic) which outlines this in more detail.
+
 1. Using nano, create a new file called `sqrt_R.sbatch`.
 
 2. Open up the new file and add a shebang line `#!/bin/bash`.
@@ -120,8 +122,7 @@ Rscript sqrt_input.R 60
 > 
 > Additional instructions and a troubleshooting guide is available on the [HMS-RC's O2 wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely). 
 
-> ### Rstudio on O2
-> Another alternative is to working with R on O2 is to use the [O2Portal RStudio App](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/2233335809/HMS+-+RStudio+on+O2). This app will start the RStudio application on one of the O2 cluster compute nodes. This application allows you to write R code, run it, and create graphs interactively using the RStudio interface. Fore more information [check out the O2 wiki page](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/2233335809/HMS+-+RStudio+on+O2).
+
 ---
 
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
