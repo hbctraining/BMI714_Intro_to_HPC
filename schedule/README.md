@@ -42,7 +42,7 @@ No installation requirements.
 
 | Lessons            | Estimated Duration |
 |:------------------------|:----------|
-|[Introduction to HPC and using the O2 cluster](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_Oct2022_BMI713.pdf) |60 min |
+|[Introduction to HPC and using the O2 cluster](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_Oct2023_BMI713.pdf) |60 min |
 |[Exercise](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/sbatch_Rexercise.html) |15 min |
 |[Data storage on O2](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_Oct2022_BMI713.pdf) |15 min |
 
