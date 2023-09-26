@@ -43,8 +43,8 @@ No installation requirements.
 | Lessons            | Estimated Duration |
 |:------------------------|:----------|
 |[Introduction to HPC and using the O2 cluster](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_Oct2023_BMI713.pdf) |60 min |
-|[Exercise](https://hbctraining.github.io/Intro-to-Unix-QMB/lessons/sbatch_Rexercise.html) |15 min |
-|[Data storage on O2](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_Oct2022_BMI713.pdf) |15 min |
+|[Exercise](../lessons/sbatch_Rexercise.md) |15 min |
+|[Data storage on O2](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_Oct2023_BMI713.pdf) |15 min |
 
 
 ## Day 2: Using R on O2
@@ -52,7 +52,7 @@ No installation requirements.
 | Lessons            | Estimated Duration |
 |:------------------------|:----------|
 |[Creating Personal R libraries on O2](../lessons/R_libraries_on_O2.md) |  |
-|[O2Portla: Using Rstudio on O2]() | |
+|[O2Portal: Using Rstudio on O2]() | |
 
 
 ## Post-class resources
