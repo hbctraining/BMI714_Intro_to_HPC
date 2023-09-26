@@ -173,3 +173,6 @@ Advantages to using RStudio on the O2 Portal are:
 
 Disadvantage using RStudio on the O2 Portal:
 - If you want to carry out time-consuming calculations, it is likely still best to submit those as a RScript via `sbatch` like we did in the previous class as you will need to keep the connection open on your coputer for the entirety of the analysis
+
+***
+*This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
