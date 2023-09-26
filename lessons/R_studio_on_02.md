@@ -1,20 +1,59 @@
+---
+title: "RStudio on O2"
+author: "Meeta Mistry and Will Gammerdinger"
+date: Tuesday, September 26th, 2023
+---
+
+Approximate time: 45 minutes
+
+## Learning Objectives:
+
+- Opening RStudio environment on O2
+- Running an R Script on the O2 cluster on the command-line
+
+## RStudio on the O2 Portal
+
+The [O2 Portal](https://o2portal.rc.hms.harvard.edu/pun/sys/dashboard) provides an opportunity for researchers to leverage the resources of a computing cluster while maintain the interactive nature of an RStudio environment. 
+
 ## Creating an RStudio session
+
+As we create our RStudio session, we are going to be monitoring what is happening with our account on O2 in real-time. In order to do this, we will need to log into O2:
+
+```
+ssh <your_O2_account>@o2.hms.harvard.edu
+```
+Next, open an interactive job so that we can get off of a login node.
+
+```
+srun --pty -p interactive -t 0-02:00 --mem 1G /bin/bash
+```
 
 ### View our current jobs
 
-Before we get started with creating an RStudio session on O2, we can first look at the first jobs we have running on O2 usng `squeue`. This will show our currently running jobs:
+Before we get started with creating an RStudio session on O2, let's first look at the jobs we have running on O2 using the `squeue` command. This will show our currently running jobs:
 
 ```
 squeue -u $USER
 ```
 
-We can see that we currently have 1 interactive job currently running. We will continue to monitor our jobs using the `watch` function.
+<p align="center">
+<img src="../img/Inital_squeue.png" width="900">
+</p>
+
+
+> NOTE: The `-u` option allows the use to specify the user to return from the `squeue` command and $USER is a special variable with your username.
+
+We can see that we currently have 1 interactive job currently running. We will continue to monitor our jobs using the `watch` function. The `watch` command will re-run the command that follows periodically so that we can "watch" the progress of the command and it will feel like it will be updating in real-time. The default is for it to update every two seconds.
 
 ```
 watch squeue -u $USER
 ```
 
-## Selecting the Resources for RStudio
+<p align="center">
+<img src="../img/Queued_RStudio_on_O2.png" width="900">
+</p>
+
+### Selecting the Resources for RStudio
 
 Now we can request the resources that we need for RStudio. In order to do this, we will need to open up our web browser and go to:
 
