@@ -49,7 +49,7 @@ ssh eCommonsID@o2.hms.harvard.edu
 The first command we will type on the command prompt will be to **start an "interactive session" on O2**. This will take us off of the login node and put us on to a compute node. *We talked about this in-class during the lecture on HPC and O2. For more detail, and to refresh your memory we have the [slides linked here](https://github.com/mistrm82/Intro-to-Unix-QMB/blob/master/slides/HPC_intro_O2_Oct2023_BMI713.pdf)* 
 
 ```bash
-$ srun -p interactive --pty --mem 8G -t 0-12:00 /bin/bash 
+$ srun -p interactive --pty --mem 1G -t 0-2:00 /bin/bash 
 ```
 
 Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. It should say something like `[eCommonsID@compute-a-16-73 ~]`. 
@@ -149,7 +149,7 @@ Let's try loading the `dplyr` library.
 > library(dplyr)
 ```
 
-We get an error that there is no such package.
+We get **an error** that there is no such package.
 
 ```
 Error in library("dplyr") : there is no package called ‘dplyr’
@@ -182,27 +182,40 @@ A personal R library is basically a space in your home folder which is dedicated
 
 1. Create a  folder for your libraries
 2. Define that space (path to the directory) as an environment variable, so R knows to look there when loading libraries
-3. 
 
-The following commands can be run in the shell at the command prompt.
+#### Create a folder for R libraries
+Typically, your personal libraries are placed in your `$HOME` folder. There is no specific naming convention, but one is suggested in the command below (the idea is to include the R version in the path). **Keep R installations separate for different verions of R**. You can do this by creating a folder for every R version you are working with, e.g. `~/R/4.0.1/library`, `~/R/4.2.1/library` and so on. This will make your work more reproducible and working in R more efficient.
+
+The following command can be run in the shell at the command prompt:
+
 ```bash
 ## create a folder for pacakge installations
 $ mkdir -p ~/R/4.1.1/library
+```
 
-## modify the environment to redirect installations to above folder
+####  Define the folder as a designated space for R libraries
+**Environment variables** are, in short, variables that describe the environment in which programs run, and they are predefined for a given computer or cluster that you are on. You can reset them to customize the environment.
+
+Let's see the full list of environment variables on O2:
+
+```bash
+$ env
+```
+
+We are going to **set the `R_LIBS_USER` environment variable. We can see in the list above that it currently does not exist. To create it, we will use `export` to assign it such that it contains the path to folder that we just created: 
+
+```bash
+# Modify the environment to redirect installations to above folder
 $ export R_LIBS_USER="~/R/4.1.1/library"
 
-## check the contents of the environment variable R_LIBS_USER
+## Check the contents of the environment variable R_LIBS_USER
 $ echo $R_LIBS_USER
 ```
 
-Now if you were to start R and try `install.pacakges("dplyr")`, it should not give you a warning anymore, but you will be prompted to choose a CRAN mirror or server to download from - try to pick a relatively close location.
+Now if you were to start R and try `install.packages("dplyr")`, it should not give you a warning anymore, but you will be prompted to choose a CRAN mirror or server to download from. 
 
-**Keep R installations separate for different verions of R**. You can do this by creating a folder for every R version you are working with, e.g. `~/R/4.0.1/library`, `~/R/4.1.1/library` and so on. This will make your work more reproducible and working in R more efficient.
 
-> **Note 1:**
->
-> You can also add the command to modify the `$R_LIBS_USER` variable to a hidden file called `~/.Renviron`, that way it will be available to you the next time you log on.
+You can also add the command to modify the `$R_LIBS_USER` variable to a hidden file called `~/.Renviron`, that way it will be available to you the next time you log on.
 > 
 > ```bash
 > echo 'R_LIBS_USER="~/R/4.1.1/library"' >  ~/.Renviron
@@ -212,9 +225,6 @@ Now if you were to start R and try `install.pacakges("dplyr")`, it should not gi
 >
 > An alternative method would be to not tinker with the `R_LIBS_USER` environment variable, but instead to get into the habit of specifying the install location when installing, e.g. `install.packages("dplyr", lib="~/R/4.1.1/library")`
 
-> **Note 3:**
->
-> [online "how-to" guide](https://wiki.rc.hms.harvard.edu/display/O2/Personal+R+Packages).
 
 > ### X11 forwarding
 >  
