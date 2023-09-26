@@ -5,7 +5,7 @@
 * Change directories into the `~/unix-intro/`, and copy over files using the following command:
 
 ```
-  $ cp /n/groups/hbctraining/unix-intro/other/*-slurm* . 
+$ cp /n/groups/hbctraining/unix-intro/other/*-slurm* . 
 ```
 
 * Open the `trimmomatic-serial-slurm.sbatch` script with `nano` 
