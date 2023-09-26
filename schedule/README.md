@@ -51,8 +51,8 @@ No installation requirements.
 
 | Lessons            | Estimated Duration |
 |:------------------------|:----------|
-|[Creating Personal R libraries on O2](../lessons/R_libraries_on_O2.md) |  |
-|[O2Portal: Using Rstudio on O2]() | |
+|[Creating Personal R libraries on O2](../lessons/R_libraries_on_O2.md) | 30 min |
+|[O2Portal: Using Rstudio on O2](../lessons/R_studio_on_02.md) | 45 min |
 
 
 ## Post-class resources
