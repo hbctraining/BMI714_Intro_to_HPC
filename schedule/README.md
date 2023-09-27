@@ -47,11 +47,11 @@ No installation requirements.
 |[Data storage on O2](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_Oct2023_BMI713.pdf) |15 min |
 
 
-## Day 2: Using R on O2
+## Day 2: Scaling up R Computation with HPC Resources
 
 | Lessons            | Estimated Duration |
 |:------------------------|:----------|
-|[Creating Personal R libraries on O2](../lessons/R_libraries_on_O2.md) | 30 min |
+|[Getting started with R on O2](../lessons/R_libraries_on_O2.md) | 30 min |
 |[O2Portal: Using Rstudio on O2](../lessons/R_studio_on_02.md) | 45 min |
 
 
