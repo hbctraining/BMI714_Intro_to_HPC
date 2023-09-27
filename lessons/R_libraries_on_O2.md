@@ -8,8 +8,8 @@ Approximate time: 40 minutes
 ## Learning Objectives
 
 * Describe the advantages of using R on HPC
+* Installing packages on O2
 * Create personal R libraries on O2
-* Utilize installed packages on O2
   
 ## Scaling up R Computation with HPC Resources
 
