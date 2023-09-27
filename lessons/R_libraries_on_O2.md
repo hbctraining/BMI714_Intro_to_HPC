@@ -214,40 +214,18 @@ $ echo $R_LIBS_USER
 
 Now if you were to start R and try `install.packages("dplyr")`, it should not give you a warning anymore, but you will be prompted to choose a CRAN mirror or server to download from. 
 
+**Do I need to export `R_LIBS_USER` for every R session on O2?** 
 
-You can also add the command to modify the `$R_LIBS_USER` variable to a hidden file called `~/.Renviron`, that way it will be available to you the next time you log on.
-> 
-> ```bash
-> echo 'R_LIBS_USER="~/R/4.1.1/library"' >  ~/.Renviron
-> ```
+In order for R to know how to find your personal libraries, it has to be explicitly specified. It can be accomplished as described above, but _it can also be set in a hidden file_ that is sourced every time R is opened. This hidden file is called `.Renviron`.
 
-> **Note 2:**
->
-> An alternative method would be to not tinker with the `R_LIBS_USER` environment variable, but instead to get into the habit of specifying the install location when installing, e.g. `install.packages("dplyr", lib="~/R/4.1.1/library")`
+To **set up your `.Renviron` file** with the export command in it, you can run the code below:
 
+```bash
+echo 'R_LIBS_USER="~/R/4.1.1/library"' >  ~/.Renviron
+```
+Just be sure to change this if you decide to use another version of R!
 
-> ### X11 forwarding
->  
-> If you want to have images pop up interactively when you are working with R on O2 or even make/save plots during your job, you will need to install and run additional software. 
-> 
-> * Windows users will need [Xming](http://sourceforge.net/projects/xming/)
-> * MacOSX users will need [Xquartz](http://xquartz.macosforge.org/landing/)
-> 
-> **Note, this section is not hands-on, please try it out on your own time.**
-> 
-> Once you have the correct software installed, make sure it is running before you log on to O2 with the additional `-XY` argument.
-> ```bash
-> $ ssh -XY ecommonsID@o2.hms.harvard.edu
-> ```
-> 
-> Once on O2, you can start an interactive session with the additional `--x11` argument.
-> ```bash
-> $ srun --pty -p interactive -t 0-12:00 --x11 /bin/bash
-> ```
-> 
-> You can also start a batch job with the additional `--x11=batch` argument.
-> 
-> Additional instructions and a troubleshooting guide is available on the [HMS-RC's O2 wiki](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely). 
+> **NOTE:**: An alternative method would be to not tinker with the `R_LIBS_USER` environment variable, but instead to get into the habit of specifying the install location when installing, e.g. `install.packages("dplyr", lib="~/R/4.1.1/library")`.
 
 ***
 
