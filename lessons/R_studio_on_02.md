@@ -11,22 +11,18 @@ Approximate time: 45 minutes
 - Opening RStudio environment on O2
 - Running an R Script on the O2 cluster on the command-line
 
-## RStudio on the O2 Portal
+## RStudio and RStudio on the O2 Portal
+
+RStudio is freely available open-source Integrated Development Environment (IDE). RStudio provides an environment with many features to make using R easier and is a great alternative to working on R in the terminal. 
+
+* Graphical user interface, not just a command prompt
+* Great learning tool 
+* Free for academic use
+* Platform agnostic
+* Open source
+
 
 The [O2 Portal](https://o2portal.rc.hms.harvard.edu/pun/sys/dashboard) provides an opportunity for researchers to leverage the resources of a computing cluster while maintain the interactive nature of an RStudio environment. 
-
-## Creating an RStudio session
-
-As we create our RStudio session, we are going to be monitoring what is happening with our account on O2 in real-time. In order to do this, we will need to log into O2:
-
-```
-ssh <your_O2_account>@o2.hms.harvard.edu
-```
-Next, open an interactive job so that we can get off of a login node.
-
-```
-srun --pty -p interactive -t 0-02:00 --mem 1G /bin/bash
-```
 
 ### View our current jobs
 
@@ -67,7 +63,7 @@ At this point, you may be asked to provide you Harvard Key credentials and carry
 <img src="../img/RStudio_resource_request.png" width="400">
 </p>
 
-### loading modules?
+### loading module (Meeta)
 
 Once we have requested those resources, we can also click checkboxes to make certain data storage are availuble to us. Once we have selected any additional data storage we want access to, we can click "Launch" at the bottom. 
 
@@ -111,7 +107,7 @@ less sqrt_input.R
 
 Now we can see that our edits are reflected in the R Script.
 
-## RStudio Environments are not persistent across sessions
+## Saving RStudio Environments
 
 Let's assign a few variables:
 
@@ -161,18 +157,10 @@ load("~/R_workshop/.RData")
 
 Now we can see that our `a` variable is present. 
 
-## export PATH to personal libraries?
+> NOTE: However, if you close the tab that that is holding the RStudio IDE, then this does not end the session. You can log back into the O2 Portal page and click on the "Connect to RStudio Server" and it will bring back the session you were working on as long as your job is still running. 
 
-## Advantages of the portal
+## export PATH to personal librarie (Meeta)
 
-Advantages to using RStudio on the O2 Portal are:
-- Allows for the use of high memory nodes
-- Allows for multithreading jobs
-- Has access to the large datasets that might be stored on an HPCC
-- Allows for using the RStudio IDE on a HPCC
-
-Disadvantage using RStudio on the O2 Portal:
-- If you want to carry out time-consuming calculations, it is likely still best to submit those as a RScript via `sbatch` like we did in the previous class as you will need to keep the connection open on your coputer for the entirety of the analysis
 
 ***
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
