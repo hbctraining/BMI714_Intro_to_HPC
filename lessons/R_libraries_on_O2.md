@@ -13,7 +13,7 @@ Approximate time: 40 minutes
   
 ## Scaling up R Computation with HPC Resources
 
-In the last session we demonstrated the use of R in a high performance compute environment using a very basic R script. In this lesson we would like to expand on that by demonstrating how best to set yourself if you plan on using R on O2.
+In the last session we demonstrated the use of R on a high performance compute environment using a very basic R script. In this lesson, we would like to expand on that by demonstrating how best to set yourself up if you plan to use R on O2.
 
 
 <p align="center">
@@ -25,14 +25,14 @@ In the last session we demonstrated the use of R in a high performance compute e
 If you are working with small(er) data files, using R on your personal computer will suffice. However, once the data become large there are a few reasons why it might be to your advantage to switch to using R on a high performance compute cluster.
 
 * **Increased** access to **compututational resources**
-    * Large datasets have increased memory requirements for processing
-    * R can be built and linked to libraries which utilizes multi-core technology for automatic parallel execution
+    * Large datasets have increased **memory** requirements for processing
+    * R can be built and linked to libraries which utilizes **multi-core** technology for automatic parallel execution
 * Access to **different R versions**
     * Especially helpful for reproducing older analyses
     * R modules have been installed and are ready to use
 * Run **R in a non-interactive session**
     * Can submit multiple R scripts as separate jobs running in the background
-command Line parameters 
+command line parameters 
 * **Running an R script with parameters**. As we showed previously, we can create R scripts which take user arguments as input. This can be helpful for:
     *  Repeated analyses on different datasets
     *  Independent analysis tasks for a larger dataset
@@ -53,7 +53,7 @@ $ srun -p interactive --pty --mem 1G -t 0-2:00 /bin/bash
 ```
 
 Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. It should say something like `[eCommonsID@compute-a-16-73 ~]`. 
-Make sure that your command prompt is now preceded by a character string that contains the word "compute". We want to do all of our work on the compute nodes, and not on the head/login node.
+Make sure that your command prompt is now preceded by a character string that contains the word "compute". _We want to do all of our work on the compute nodes, and not on the head/login node._
 
 ### Loading the appropriate R module
 
@@ -85,16 +85,16 @@ $ module spider R
         R/4.3.1
 ```
 
-We will want to use R 4.1.1 for the exercises in this lesson. Before we load it let's check to see if we need to do anything special before.
+We will want to use R 4.2.1 for the exercises in this lesson. Before we load it let's check to see if we need to do anything special before.
 
 ```bash
-$ module spider R/4.1.1
+$ module spider R/4.2.1
 ```
 
-**Turns out that we first need to load the gcc 6.2.0 compiler before loading R.** 
+**Turns out that we first need to load the gcc 9.2.0 compiler before loading R.** 
 
 ```bash
-$ module load gcc/6.2.0 R/4.1.1
+$ module load gcc/9.2.0 R/4.2.1
 ```
 
 Now that we have R loaded, to use it we simply type in R to the terminal window and press the return key. You will see that you have successfully moved away from the shell command prompt and into **the R console with the R prompt `>`**.
@@ -102,8 +102,8 @@ Now that we have R loaded, to use it we simply type in R to the terminal window 
 ```bash
 $ R
 
-R version 4.1.1 (2021-08-10) -- "Kick Things"
-Copyright (C) 2021 The R Foundation for Statistical Computing
+R version 4.2.1 (2022-06-23) -- "Funny-Looking Kid"
+Copyright (C) 2022 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
