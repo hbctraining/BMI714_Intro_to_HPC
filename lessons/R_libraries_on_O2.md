@@ -154,7 +154,7 @@ We get **an error** that there is no such package.
 Error in library("dplyr") : there is no package called ‘dplyr’
 ```
 
-If we were working with R on our personal computer, the next logical step would be to try and install the package. When a package is installed (either locally, or on the cluster), the source files are downloaded an installed to a specific location. **To find out where these files go by default, we can check `.libPaths()`:
+If we were working with R on our personal computer, the next logical step would be to try and install the package. When a package is installed (either locally, or on the cluster), the source files are downloaded an installed to a specific location. **To find out where these files go by default, we can check `.libPaths()`**:
 
 ```r
 .libPaths()
@@ -179,7 +179,7 @@ Would you like to use a personal library instead? (yes/No/cancel)
 
 * If we type **yes**, a folder will be created in your home folder `/R/x86_64-pc-linux-gnu-library/4.2/` and the package will get installed. This is fine, and you can very well use this personal library location for future package installs.
 
-What we want to show you is how to setup your own organized space for R libraries, and how to access them when using different versions of R. Let's quit thiw R session qnd get back to the terminal command prompt before we begin the next section.
+What we want to show you is how to setup your own organized space for R libraries, and how to access them when using different versions of R. Let's quit this R session and get back to the terminal command prompt before we begin the next section.
 
 ```r
 > q()
