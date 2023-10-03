@@ -123,7 +123,6 @@ Type 'q()' to quit R.
 > 
 ```
 
-
 ### Installing Packages on O2
 
 Packages are collections of R functions, data, and compiled code in a well-defined format, created to add specific functionality. There are 10,000+ user contributed packages and growing.
@@ -142,33 +141,45 @@ search() #Gives a list of attached packages
 
 The more you work with R, you will come to realize that there is a cornucopia of R packages that offer a wide variety of functionality. To use **additional packages will require installation**. Many packages can be installed from the [CRAN](http://cran.r-project.org/) or [Bioconductor](https://www.bioconductor.org/) repositories.
 
+As you noticed from the output of `sessionInfo()` there appear to only be base packages available. Let's change that by installing a package from CRAN. 
 
-Let's try loading the `dplyr` library.
+[`dplyr`](https://dplyr.tidyverse.org/) is a great package that has various functions to help solve the most common data manipulation challenges. We can start by trying to load this library:
 
 ```r
 > library(dplyr)
 ```
 
-We get **an error** that there is no such package.
-
+We get **an error** that there is no such package. 
 ```
 Error in library("dplyr") : there is no package called ‘dplyr’
 ```
 
-If were working in R on our personal computer, the next logical step would be to try and install the package. However, if we try that same code her on O2, we get an error and a suggestion to create a personal library. 
+If we were working with R on our personal computer, the next logical step would be to try and install the package. When a package is installed (either locally, or on the cluster), the source files are downloaded an installed to a specific location. **To find out where these files go by default, we can check `.libPaths()`:
 
+```r
+.libPaths()
+
+[1] "/n/app/R/4.2.1-gcc-9.2.0/lib64/R/library"
 ```
+
+>**NOTE:** The `.libPaths()` is not specific to the cluster. You can test this out on your local versions of R and identify where the libraries are currently being stored!
+
+We can see that the path is to a location on the `n/app/` space, a filesystem that is not writeable. If we try and install a package we get a warning and a suggestion to create a personal library. 
+
+```r
 install.packages("dplyr")
 
-
 Warning in install.packages("dplyr") :
-  'lib = "/n/app/R/4.1.1/lib64/R/library"' is not writable
+  'lib = "/n/app/R/4.2.1/lib64/R/library"' is not writable
 Would you like to use a personal library instead? (yes/No/cancel)
 ```
+**Type cancel to exit.**
 
-Based on this message it looks like the main library folder cannot be modified by us. Instead, the cluster has been set up to allow every **user to create their own personal libraries for the distinct versions of R**. This is to account for every user having different needs.
+* If we type **no**, we will get an error message `Error in install.packages("readr") : unable to install packages`
 
-**Type `cancel`** or do Ctrl + C to escape back to the R command prompt and **quit out of R without saving the workspace image**. Before we can install any packages let's get setup with personal libraries.
+* If we type **yes**, a folder will be created in your home folder `/R/x86_64-pc-linux-gnu-library/4.2/` and the package will get installed. This is fine, and you can very well use this personal library location for future package installs.
+
+What we want to show you is how to setup your own organized space for R libraries, and how to access them when using different versions of R. Let's quit thiw R session qnd get back to the terminal command prompt before we begin the next section.
 
 ```r
 > q()
@@ -176,7 +187,7 @@ Based on this message it looks like the main library folder cannot be modified b
 
 ### Creating Personal R Libraries 
 
-> **NOTE:** The details we provide in this section is a condensed version of what is provided on the [HMSRC O2 Wiki](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662168/Personal+R+Packages). We encourage you to peruse the docs to get more detailed information for working with R on O2 and/or talk to the folks at HMS RC when troubleshooting.
+> **NOTE:** The details we provide in this section are a condensed version of what is provided on the [HMSRC O2 Wiki](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662168/Personal+R+Packages). We encourage you to peruse the docs to get more detailed information for working with R on O2 and/or talk to the folks at HMS RC when troubleshooting.
 
 A personal R library is basically a space in your home folder which is dedicated for source code related to any R packages you choose to install. Once you have a package installed for a specific version of R, you simply point to that directory when loading your libraries. There are two main things you need to do:
 
@@ -190,7 +201,7 @@ The following command can be run in the shell at the command prompt:
 
 ```bash
 ## create a folder for pacakge installations
-$ mkdir -p ~/R/4.1.1/library
+$ mkdir -p ~/R/4.2.1/library
 ```
 
 ####  Define the folder as a designated space for R libraries
@@ -206,7 +217,7 @@ We are going to **set the `R_LIBS_USER` environment variable. We can see in the 
 
 ```bash
 # Modify the environment to redirect installations to above folder
-$ export R_LIBS_USER="~/R/4.1.1/library"
+$ export R_LIBS_USER="~/R/4.2.1/library"
 
 ## Check the contents of the environment variable R_LIBS_USER
 $ echo $R_LIBS_USER
@@ -221,7 +232,7 @@ In order for R to know how to find your personal libraries, it has to be explici
 To **set up your `.Renviron` file** with the export command in it, you can run the code below:
 
 ```bash
-echo 'R_LIBS_USER="~/R/4.1.1/library"' >  ~/.Renviron
+echo 'R_LIBS_USER="~/R/4.2.1/library"' >  ~/.Renviron
 ```
 Just be sure to change this if you decide to use another version of R!
 
