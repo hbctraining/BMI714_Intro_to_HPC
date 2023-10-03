@@ -179,7 +179,7 @@ Would you like to use a personal library instead? (yes/No/cancel)
 
 * If we type **yes**, a folder will be created in your home folder `/R/x86_64-pc-linux-gnu-library/4.2/` and the package will get installed. This is fine, and you can very well use this personal library location for future package installs.
 
-What we want to show you is how to setup your own organized space for R libraries, and how to access them when using different versions of R. Let's quit this R session and get back to the terminal command prompt before we begin the next section.
+What we want to show you is **how to setup your own organized space for R libraries**, and how to access them when using different versions of R. Let's quit this R session and get back to the terminal command prompt before we begin the next section.
 
 ```r
 > q()
@@ -189,7 +189,7 @@ What we want to show you is how to setup your own organized space for R librarie
 
 > **NOTE:** The details we provide in this section are a condensed version of what is provided on the [HMSRC O2 Wiki](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662168/Personal+R+Packages). We encourage you to peruse the docs to get more detailed information for working with R on O2 and/or talk to the folks at HMS RC when troubleshooting.
 
-A personal R library is basically a space in your home folder which is dedicated for source code related to any R packages you choose to install. Once you have a package installed for a specific version of R, you simply point to that directory when loading your libraries. There are two main things you need to do:
+A personal R library is basically a space in your home folder which is dedicated for source code related to any R packages you choose to install. Once you have a package installed for a specific version of R, you simply point to that directory when loading your libraries. There are **two main things you need to do**:
 
 1. Create a  folder for your libraries
 2. Define that space (path to the directory) as an environment variable, so R knows to look there when loading libraries
@@ -237,6 +237,29 @@ echo 'R_LIBS_USER="~/R/4.2.1/library"' >  ~/.Renviron
 Just be sure to change this if you decide to use another version of R!
 
 > **NOTE:**: An alternative method would be to not tinker with the `R_LIBS_USER` environment variable, but instead to get into the habit of specifying the install location when installing, e.g. `install.packages("dplyr", lib="~/R/4.1.1/library")`.
+
+> ### X11 forwarding
+>  
+> If you want to have images pop up interactively when you are working with R on O2 or even make/save plots during your job, you will need to install and run additional software. 
+> 
+> * Windows users will need [Xming](http://sourceforge.net/projects/xming/)
+> * MacOSX users will need [Xquartz](http://xquartz.macosforge.org/landing/)
+> 
+> **Note, this section is not hands-on, please try it out on your own time.**
+> 
+> Once you have the correct software installed, make sure it is running before you log on to O2 with the additional `-XY` argument.
+> ```bash
+> $ ssh -XY ecommonsID@o2.hms.harvard.edu
+> ```
+> 
+> Once on O2, you can start an interactive session with the additional `--x11` argument.
+> ```bash
+> $ srun --pty -p interactive -t 0-12:00 --x11 /bin/bash
+> ```
+> 
+> You can also start a batch job with the additional `--x11=batch` argument.
+> 
+
 
 ***
 
