@@ -41,7 +41,7 @@ No installation requirements.
 
 
 | Lessons            | Estimated Duration | Instructor |
-|:------------------------|:----------|
+|:------------------------|:----------|:----------|
 |[Introduction to HPC and using the O2 cluster](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_Oct2023_BMI713.pdf) |60 min | Meeta |
 | Break | 10 min | |
 |[Exercise](../lessons/sbatch_Rexercise.md) |15 min | Will |
@@ -50,8 +50,8 @@ No installation requirements.
 
 ## Day 2: Scaling up R Computation with HPC Resources
 
-| Lessons            | Estimated Duration |
-|:------------------------|:----------|
+| Lessons            | Estimated Duration | Instructor |
+|:------------------------|:----------|:----------|
 |[Getting started with R on O2](../lessons/R_libraries_on_O2.md) | 30 min |  Meeta |
 | Break | 10 min | |
 |[O2Portal: Using Rstudio on O2](../lessons/R_studio_on_02.md) | 45 min | Will |
