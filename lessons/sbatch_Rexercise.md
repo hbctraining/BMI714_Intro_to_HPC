@@ -34,7 +34,7 @@ round(sqrt(num), digit=2)
 	<details>
 	<summary><b><i>How to run the R script</i></b></summary>
 	<br>
-	<p> The script can be run from the command line using the `Rscript` command. Don't forget to provide a numeric value as input.
+	<p> The script can be run from the command line using the <code>Rscript</code> command. Don't forget to provide a numeric value as input.
 	            
 	<pre>
 	Rscript sqrt_input.R 60
