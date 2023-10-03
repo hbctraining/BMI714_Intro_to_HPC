@@ -189,15 +189,15 @@ What we want to show you is **how to setup your own organized space for R librar
 
 > **NOTE:** The details we provide in this section are a condensed version of what is provided on the [HMSRC O2 Wiki](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662168/Personal+R+Packages). We encourage you to peruse the docs to get more detailed information for working with R on O2 and/or talk to the folks at HMS RC when troubleshooting.
 
-A personal R library is basically a space in your home folder which is dedicated for source code related to any R packages you choose to install. Once you have a package installed for a specific version of R, you simply point to that directory when loading your libraries. There are **two main things you need to do**:
+A **personal R library** is basically a **directory** which is **dedicated for source code related to any R packages you install**. Once you have a package installed for a specific version of R, you simply point to that directory when loading your libraries. There are two main things you need to do:
 
-1. Create a  folder for your libraries
-2. Define that space (path to the directory) as an environment variable, so R knows to look there when loading libraries
+1. Create a directory for your libraries
+2. Define that path to the directory as an environment variable, so R knows to look there when loading libraries
 
 #### Create a folder for R libraries
 Typically, your personal libraries are placed in your `$HOME` folder. There is no specific naming convention, but one is suggested in the command below (the idea is to include the R version in the path). **Keep R installations separate for different verions of R**. You can do this by creating a folder for every R version you are working with, e.g. `~/R/4.0.1/library`, `~/R/4.2.1/library` and so on. This will make your work more reproducible and working in R more efficient.
 
-The following command can be run in the shell at the command prompt:
+The following command can be run in the shell at the command prompt to create a directory:
 
 ```bash
 ## create a folder for pacakge installations
@@ -205,7 +205,7 @@ $ mkdir -p ~/R/4.2.1/library
 ```
 
 ####  Define the folder as a designated space for R libraries
-**Environment variables** are, in short, variables that describe the environment in which programs run, and they are predefined for a given computer or cluster that you are on. You can reset them to customize the environment.
+**Environment variables** are, in short, are variables that describe the environment in which programs run, and they are typically predefined for a given computer or cluster that you are on. You can reset them to customize the environment.
 
 Let's see the full list of environment variables on O2:
 
@@ -213,7 +213,7 @@ Let's see the full list of environment variables on O2:
 $ env
 ```
 
-We are going to **set the `R_LIBS_USER` environment variable. We can see in the list above that it currently does not exist. To create it, we will use `export` to assign it such that it contains the path to folder that we just created: 
+We are going to **set the `R_LIBS_USER` environment variable**. We can see in the list above that it currently does not exist. To **create it, we will use `export`** to assign it such that it contains the path to folder that we just created: 
 
 ```bash
 # Modify the environment to redirect installations to above folder
