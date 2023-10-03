@@ -63,8 +63,6 @@ At this point, you may be asked to provide you Harvard Key credentials and carry
 <img src="../img/RStudio_resource_request.png" width="400">
 </p>
 
-### loading module (Meeta)
-
 Once we have requested those resources, we can also click checkboxes to make certain data storage are availuble to us. Once we have selected any additional data storage we want access to, we can click "Launch" at the bottom. 
 
 <p align="center">
@@ -74,8 +72,14 @@ Once we have requested those resources, we can also click checkboxes to make cer
 We can now see that our job is queued in our `sbatch` command on the terminal and the Job ID matches the number in the parantheses in our browser (in red below). Initially, our job will be slated as queued which is also shown in the browser window and in the terminal (in orange below). 
 
 <p align="center">
-<img src="../img/Queued_RStudio_on_O2.png" width="900">
+<img src="../img/Queued_RStudio_on_O2_v2.png" width="900">
 </p>
+
+> Note: If we had not previously exported our libraries, then you can also embed the command we previously added to our `~/.Renviron` file:
+>```
+>export R_LIBS_USER="~/R/4.2.1/library"
+>```
+
 
 Once the resources for our job have been allocated, the job will have started, regardless of whether we have clicked "Connect to RStudio Server" to open up RStudio in our browser. Once again, you can see the correspondence between the browser and terminal for Job ID (in red below), status (in orange below), compute node (in purple below) and wall time (in pink).
 
@@ -107,9 +111,15 @@ less sqrt_input.R
 
 Now we can see that our edits are reflected in the R Script.
 
+## Closing a Tab with RStudio
+
+Perhaps you need to close your computer or your browser window, what will happen to your job and the data currently in your R environment? No worries, it will all still be there as long as the RStudio job is still running on the cluster. Importantly, when you close the tab that that is holding the RStudio IDE, then this does not end the session or end the job. The variables in your environment are still being held on the cluster. This can be really nice when working on long computations. Let's go ahead and close a tab in our web browser containing our RStudio IDE.
+
+We can log back into the O2 Portal page and click on the "Connect to RStudio Server" and it will bring back the session you were working on as long as your job is still running. 
+
 ## Saving RStudio Environments
 
-Let's assign a few variables:
+However, you might want to save everything you are working on because your job allocation is coming to an end or you have finished your analyses. In order to demonstrate what to do in this scenario, let's first assign a few variables:
 
 ```
 x <- 2
@@ -117,11 +127,13 @@ y <- 3
 z <- x + y
 ```
 
-Now let's go ahead and close our RStudio session by clicking the red button in the upper right of the session.
+Now, let's go ahead and close our RStudio session by clicking the red button in the upper right of the session.
 
 <p align="center">
 <img src="../img/Closing_RStudio.png" width="900">
 </p>
+
+> Note: Impartantly, this is closing the RStudio session. When we closed the tab holding the RStudio earlier, it actually didn't close the RStudio session. This is an important distinction which we will soon see.
 
 Once we have closed the RStudio session, we will have an option to reopen it. When we reopen it, you will notice that it is the  environment has been wiped clean. That is because the environment is not saved when closing an RStudio session. In order to save the environment, you will need to use the `save.image()` function in R. Let's once again, assign a few variables:
 
@@ -156,11 +168,6 @@ load("~/R_workshop/.RData")
 ```
 
 Now we can see that our `a` variable is present. 
-
-> NOTE: However, if you close the tab that that is holding the RStudio IDE, then this does not end the session. You can log back into the O2 Portal page and click on the "Connect to RStudio Server" and it will bring back the session you were working on as long as your job is still running. 
-
-## export PATH to personal librarie (Meeta)
-
 
 ***
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
