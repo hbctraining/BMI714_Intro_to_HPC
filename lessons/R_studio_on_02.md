@@ -98,7 +98,7 @@ Now let's make some edits to our R script, `sqrt_input.R`, in the browser. Let's
 round(sqrt(num), digit=2) 
 ```
 
-To be to add two to our output of the round squeare root:
+Now let's add two to the output of the rounded square root:
 
 ```
 round(sqrt(num), digit=2) + 2
