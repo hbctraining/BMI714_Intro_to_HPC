@@ -67,6 +67,11 @@ At this point, you may be asked to provide you Harvard Key credentials and carry
 
 Once we have requested those resources, we can also click checkboxes to make certain data storage are availuble to us. Once we have selected any additional data storage we want access to, we can click "Launch" at the bottom. 
 
+> Note: If we had not previously exported our libraries, then you can also embed the command we previously added to our `~/.Renviron` file into the "Optional Environment Setup" box:
+>```
+>export R_LIBS_USER="~/R/4.2.1/library"
+>```
+
 <p align="center">
 <img src="../img/RStudio_launch.png" width="400">
 </p>
@@ -76,12 +81,6 @@ We can now see that our job is queued in our `sbatch` command on the terminal an
 <p align="center">
 <img src="../img/Queued_RStudio_on_O2.png" width="900">
 </p>
-
-> Note: If we had not previously exported our libraries, then you can also embed the command we previously added to our `~/.Renviron` file:
->```
->export R_LIBS_USER="~/R/4.2.1/library"
->```
-
 
 Once the resources for our job have been allocated, the job will have started, regardless of whether we have clicked "Connect to RStudio Server" to open up RStudio in our browser. Once again, you can see the correspondence between the browser and terminal for Job ID (in red below), status (in orange below), compute node (in purple below) and wall time (in pink).
 
