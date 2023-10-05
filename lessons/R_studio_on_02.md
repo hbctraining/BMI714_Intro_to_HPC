@@ -82,7 +82,7 @@ We can now see that our job is queued in our `sbatch` command on the terminal an
 <img src="../img/Queued_RStudio_on_O2.png" width="900">
 </p>
 
-Once the resources for our job have been allocated, the job will have started, regardless of whether we have clicked "Connect to RStudio Server" to open up RStudio in our browser. Once again, you can see the correspondence between the browser and terminal for Job ID (in red below), status (in orange below), compute node (in purple below) and wall time (in pink).
+Once the resources for our job have been allocated, the job will have started, regardless of whether we have clicked "Connect to RStudio Server" to open up RStudio in our browser. Once again, you can see the correspondence between the browser and terminal for Job ID, status, compute node (in purple below) and wall time (in pink).
 
 <p align="center">
 <img src="../img/Running_RStudio_on_O2_v2.png" width="900">
