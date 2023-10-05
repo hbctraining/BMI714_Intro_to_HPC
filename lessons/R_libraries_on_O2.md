@@ -177,7 +177,7 @@ Would you like to use a personal library instead? (yes/No/cancel)
 
 * If we type **no**, we will get an error message `Error in install.packages("readr") : unable to install packages`
 
-* If we type **yes**, a folder will be created in your home folder `/R/x86_64-pc-linux-gnu-library/4.2/` and the package will get installed. This is fine, and you can very well use this personal library location for future package installs.
+* If we type **yes**, a folder will be created in your home folder `/R/x86_64-pc-linux-gnu-library/4.2/` and the package will get installed. This is fine, and you could use this personal library location for future package installs.
 
 What we want to show you is **how to setup your own organized space for R libraries**, and how to access them when using different versions of R. Let's quit this R session and get back to the terminal command prompt before we begin the next section.
 
@@ -194,7 +194,7 @@ A **personal R library** is basically a **directory** which is **dedicated for s
 1. Create a directory for your libraries
 2. Define that path to the directory as an environment variable, so R knows to look there when loading libraries
 
-#### Create a folder for R libraries
+#### Create a directory for R libraries
 Typically, your personal libraries are placed in your `$HOME` folder. There is no specific naming convention, but one is suggested in the command below (the idea is to include the R version in the path). **Keep R installations separate for different verions of R**. You can do this by creating a folder for every R version you are working with, e.g. `~/R/4.0.1/library`, `~/R/4.2.1/library` and so on. This will make your work more reproducible and working in R more efficient.
 
 The following command can be run in the shell at the command prompt to create a directory:
@@ -205,7 +205,7 @@ $ mkdir -p ~/R/4.2.1/library
 ```
 
 ####  Define the folder as a designated space for R libraries
-**Environment variables** are, in short, are variables that describe the environment in which programs run, and they are typically predefined for a given computer or cluster that you are on. You can reset them to customize the environment.
+**Environment variables** are, in short, variables that describe the environment in which programs run, and they are typically predefined for a given computer or cluster that you are on. You can reset them to customize the environment.
 
 Let's see the full list of environment variables on O2:
 
@@ -223,11 +223,28 @@ $ export R_LIBS_USER="~/R/4.2.1/library"
 $ echo $R_LIBS_USER
 ```
 
-Now if you were to start R and try `install.packages("dplyr")`, it should not give you a warning anymore, but you will be prompted to choose a CRAN mirror or server to download from. 
+Now let's go back and open up R and check and see if `.libPaths()` has been modified:
+
+```bash
+
+> .libPaths()
+[1] "/home/mm573/R/4.2.1/library"             
+[2] "/n/app/R/4.2.1-gcc-9.2.0/lib64/R/library"
+```
+
+We can go ahead and try installing `dplyr` and it will get installed into our newly created personal library space for R/4.2.1. _Note that this may take a couple of minutes to finish._
+
+```r
+> install.packages("dplyr")
+```
 
 **Do I need to export `R_LIBS_USER` for every R session on O2?** 
 
-In order for R to know how to find your personal libraries, it has to be explicitly specified. It can be accomplished as described above, but _it can also be set in a hidden file_ that is sourced every time R is opened. This hidden file is called `.Renviron`.
+The short answer is yes. If you closed the terminal and logged back in to O2 later, you would find that `R_LIBS_USER` is no longer set. If you tried to open up R and load the dplyr library you would get an error, because R has no idea where to find it. 
+
+In order for R to know how to find your personal libraries, it has to be explicitly specified. **However, there is a way to avoid exporting the `R_LIBS_USER` variable each time you use O2.**  We can do this by putting the `export` command into a hidden file that is sourced every time R is opened. This hidden file is called `.Renviron` and should reside in your home directory.
+
+> **What is a hidden file?** It is a file which begins with the period (.) character which makes it such that it is not visible to users when exploring or listing files. Hidden files are often used for storage of user preferences. They are created frequently by various system or application utilities. Hidden files are helpful in preventing accidental deletion of important data.
 
 To **set up your `.Renviron` file** with the export command in it, you can run the code below:
 
