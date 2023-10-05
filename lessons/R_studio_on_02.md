@@ -65,7 +65,7 @@ At this point, you may be asked to provide you Harvard Key credentials and carry
 
 > Note: If you have more than one possible account to charge, you will need to use the dropdown menu to select the account to charge. In this case, we need to select `class_hms_bmi713` as our account.
 
-Once we have requested those resources, we can also click checkboxes to make certain data storage are availuble to us. Once we have selected any additional data storage we want access to, we can click "Launch" at the bottom. 
+Once we have requested those resources, we can also click checkboxes to make certain data storage are availible to us. Once we have selected any additional data storage we want access to, we can click "Launch" at the bottom. 
 
 <p align="center">
 <img src="../img/RStudio_launch.png" width="400">
@@ -76,7 +76,7 @@ Once we have requested those resources, we can also click checkboxes to make cer
 >export R_LIBS_USER="~/R/4.2.1/library"
 >```
 
-We can now see that our job is queued in our `sbatch` command on the terminal and the Job ID matches the number in the parantheses in our browser (in red below). Initially, our job will be slated as queued which is also shown in the browser window and in the terminal (in orange below). 
+We can now see that our job is queued in our `sbatch` command on the terminal and the Job ID matches the number in the parantheses in our browser (in red below). Initially, our job will be slated as "Queued", which is also shown in the browser window and in the terminal (in orange below). 
 
 <p align="center">
 <img src="../img/Queued_RStudio_on_O2.png" width="900">
@@ -88,11 +88,11 @@ Once the resources for our job have been allocated, the job will have started, r
 <img src="../img/Running_RStudio_on_O2_v2.png" width="900">
 </p>
 
-We can start our RStudio environment by click on the "Connect to RStudio Server" button. An RStudio window should now open up in your browser and you can use it just like RStudio on your laptop, except now you have access to the resources of an HPC.
+We can start our RStudio environment by clicking on the "Connect to RStudio Server" button. An RStudio window should now open up in your browser and you can use it is just like RStudio on your laptop, except now you have access to the resources of an HPC.
 
 ### Open up the script in RStudio
 
-Now let's make some edits to our R script, `sqrt_input.R`, in the browser. Let's change:
+Let's make some edits to our R script, `sqrt_input.R`, in the browser. Let's change:
 
 ```
 round(sqrt(num), digit=2) 
@@ -162,7 +162,7 @@ Now let's save this `.RData` object to out `R_workshop` directory:
 save.image("~/R_workshop/.RData")
 ```
 
-Now let's close our RStudio session and re-open it. We will notice that by default RStudio is reading the `.RData` image from our home directory, because the `a` variable is not in the environment. However, if you want to load the `.RData` image from our `R_workshop` directory, then we can use the following command:
+Now let's close our RStudio session and re-open it. We will notice that by default RStudio is reading the `.RData` image from our Home directory, because the `a` variable is not in the environment. However, if you want to load the `.RData` image from our `R_workshop` directory, then we can use the following command:
 
 ```
 load("~/R_workshop/.RData")
