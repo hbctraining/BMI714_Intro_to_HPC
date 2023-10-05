@@ -238,11 +238,13 @@ We can go ahead and try installing `dplyr` and it will get installed into our ne
 > install.packages("dplyr")
 ```
 
+> **NOTE:** An alternative method would be to not tinker with the `R_LIBS_USER` environment variable, but instead to get into the habit of specifying the install location when installing, e.g. `install.packages("dplyr", lib="~/R/4.1.1/library")`.
+
 **Do I need to export `R_LIBS_USER` for every R session on O2?** 
 
 The short answer is yes. If you closed the terminal and logged back in to O2 later, you would find that `R_LIBS_USER` is no longer set. If you tried to open up R and load the dplyr library you would get an error, because R has no idea where to find it. 
 
-In order for R to know how to find your personal libraries, it has to be explicitly specified. **However, there is a way to avoid exporting the `R_LIBS_USER` variable each time you use O2.**  We can do this by putting the `export` command into a hidden file that is sourced every time R is opened. This hidden file is called `.Renviron` and should reside in your home directory.
+In order for R to know how to find your personal libraries, it has to be explicitly specified. **However, there is a way to avoid exporting the `R_LIBS_USER` variable each time you use O2.**  We can do this by putting the `export` command into a hidden file that is sourced every time R is opened. This **hidden file is called `.Renviron`** and should reside in your home directory.
 
 > **What is a hidden file?** It is a file which begins with the period (.) character which makes it such that it is not visible to users when exploring or listing files. Hidden files are often used for storage of user preferences. They are created frequently by various system or application utilities. Hidden files are helpful in preventing accidental deletion of important data.
 
@@ -251,11 +253,12 @@ To **set up your `.Renviron` file** with the export command in it, you can run t
 ```bash
 echo 'R_LIBS_USER="~/R/4.2.1/library"' >  ~/.Renviron
 ```
-Just be sure to change this if you decide to use another version of R!
+Now you are all set with your personal libraries for the next time you log on to the cluster.
+Just be sure to **change this if you decide to use another version of R!**
 
-> **NOTE:**: An alternative method would be to not tinker with the `R_LIBS_USER` environment variable, but instead to get into the habit of specifying the install location when installing, e.g. `install.packages("dplyr", lib="~/R/4.1.1/library")`.
 
-> ### X11 forwarding
+
+> ### Plotting figures using X11 forwarding
 >  
 > If you want to have images pop up interactively when you are working with R on O2 or even make/save plots during your job, you will need to install and run additional software. 
 > 
@@ -265,6 +268,7 @@ Just be sure to change this if you decide to use another version of R!
 > **Note, this section is not hands-on, please try it out on your own time.**
 > 
 > Once you have the correct software installed, make sure it is running before you log on to O2 with the additional `-XY` argument.
+> 
 > ```bash
 > $ ssh -XY ecommonsID@o2.hms.harvard.edu
 > ```
