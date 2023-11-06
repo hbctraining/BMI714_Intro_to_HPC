@@ -17,7 +17,7 @@ You can work with R on O2, but there are few differences from how you work with 
 
 1. O2 does not support RStudio use from the cluster, instead R can be run directly from an interactive session or as an R script (recommended). *Other clusters may have RStudio servers available, please talk to the respective system administrators for additional information.*
 2. To enable most types of plotting or image generation, you have to set up your account/computer to use X11 forwarding.
-3. Modules for R are available, and these have some commonly used packages installed. However, the local environment would need to be modified and a user-specific folder(s) has to be created for installing additional pacakges.
+3. Modules for R are available, and these have some commonly used packages installed. However, the local environment would need to be modified and a user-specific folder(s) has to be created for installing additional packages.
 
 Let's walk through some of these in more detail.
 
@@ -141,7 +141,7 @@ Say `cancel` or do Ctrl + C to escape back to the R command prompt and **quit ou
 ### Setting up the folder and local environment to allow package installations
 The following commands can be run in the shell at the command prompt.
 ```bash
-## create a folder for pacakge installations
+## create a folder for package installations
 $ mkdir -p ~/R/4.1.1/library
 
 ## modify the environment to redirect installations to above folder
@@ -151,7 +151,7 @@ $ export R_LIBS_USER="~/R/4.1.1/library"
 $ echo $R_LIBS_USER
 ```
 
-Now if you were to start R and try `install.pacakges("dplyr")`, it should not give you a warning anymore, but you will be prompted to choose a CRAN mirror or server to download from - try to pick a relatively close location.
+Now if you were to start R and try `install.packages("dplyr")`, it should not give you a warning anymore, but you will be prompted to choose a CRAN mirror or server to download from - try to pick a relatively close location.
 
 Create a folder for every R version you are working with, e.g. `~/R/4.0.1/library`, `~/R/4.1.1/library` and so on. **Keep R installations separate for different verions of R** and save the library folders for old R versions. This will make your work more reproducible and working in R more efficient.
 
