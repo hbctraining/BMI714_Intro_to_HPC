@@ -13,6 +13,8 @@ The dataset which is used in the pre-reading activities can be found at the link
 
 * [Introduction to Shell: Dataset](https://github.com/hbctraining/Training-modules/blob/master/Intro_shell/data/unix_lesson.zip?raw=true)
 
+### Lessons[Workshop schedule (trainer-led learning)](schedule/workshop_schedule.md)
+
 ### Installation Requirements
 
 ***Mac users:***
