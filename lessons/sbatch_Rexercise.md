@@ -84,10 +84,10 @@ If you need help figuring out what options are available for slurm directives, t
 #SBATCH -o sqrt.out		# File to which standard out will be written
 #SBATCH -e sqrt.err 		# File to which standard err will be written
 
-# Load required modules
+&#35; Load required modules
 module load gcc/6.2.0 R/4.1.1
 
-# Run the R script
+&#35; Run the R script
 Rscript sqrt_input.R 60
 
 </pre>
