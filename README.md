@@ -11,7 +11,7 @@ Many data analysis tools require users to have a basic working knowledge of the 
 ### Dataset
 The dataset which is used in the pre-reading activities can be found at the link below. Note, **more detailed instructions for dataset download are found in the pre-reading below.**
 
-* [Introduction to Shell: Dataset](https://www.dropbox.com/s/t3lkyz1pz021222/unix_lesson.tar.gz?dl=1)
+* [Introduction to Shell: Dataset](data/unix_lesson.zip)
 
 ### Lessons
 
