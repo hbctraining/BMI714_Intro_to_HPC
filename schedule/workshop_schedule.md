@@ -3,7 +3,7 @@
 
 | Lessons            | Estimated Duration |
 |:------------------------|:----------|
-|[Introduction to the command line](https://hbctraining.github.io/Training-modules/Intro-to-shell-flipped/lessons/01_the_filesystem.html)| 40 min |
+|[Introduction to the command line](https://hbctraining.github.io/Intro-to-shell-flipped/lessons/01_the_filesystem.html)| 40 min |
 |[Concepts and terminology related to High Performance Computing](https://hbctraining.github.io/Intro-to-shell-flipped/lessons/08_HPC_intro_and_terms.html) | 20 min |
 
 
