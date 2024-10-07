@@ -3,6 +3,7 @@
 Create an R script and add the appropriate slurm directives to run it as a batch script using the `sbatch` command from Slurm.
 
 > **RMarkdown vs. R Script**
+> 
 > RMarkdown is a file format in its most basic form, that can eventually be converted into a shareable document, e.g HTML, PDF and many others. It allows you to document not just your R (Python and SQL) code, but also enables the inclusion of tables, figures, along with descriptive text. However, R Scripts are plain text files that only have code for R to execute. One way to think about the difference between RMarkdown and an R Script is that an R Script likely looks like all of the code within the code blocks in your R Markdown pushed together. Oftentimes when working with RMarkdown, you will likely share the HTML/PDF/etc., but when working with an R script you would share the R script directly.  
 
 ### Create the R script
