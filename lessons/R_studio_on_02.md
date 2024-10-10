@@ -63,7 +63,7 @@ At this point, you may be asked to provide you Harvard Key credentials and carry
 
 > Note: If you have more than one possible account to charge, you will need to use the dropdown menu to select the account to charge. In this case, we need to select `class_hms_bmi713` as our account.
 
-Once we have requested those resources, we can also click checkboxes to make certain data storage are availible to us. Once we have selected any additional data storage we want access to, we can click "Launch" at the bottom. 
+Once we have requested those resources, we can also click checkboxes to make certain data storage are available to us. Once we have selected any additional data storage we want access to, we can click "Launch" at the bottom. 
 
 <p align="center">
 <img src="../img/RStudio_launch.png" width="400">
