@@ -29,7 +29,7 @@ The [O2 Portal](https://o2portal.rc.hms.harvard.edu/pun/sys/dashboard) provides 
 Before we get started with creating an RStudio session on O2, let's first look at the jobs we have running on O2 using the `squeue` command. This will show our currently running jobs:
 
 ```
-squeue -u $USER
+O2squeue
 ```
 
 <p align="center">
@@ -37,12 +37,10 @@ squeue -u $USER
 </p>
 
 
-> NOTE: The `-u` option allows the use to specify the user to return from the `squeue` command and $USER is a special variable with your username.
-
 We can see that we currently have 1 interactive job currently running. We will continue to monitor our jobs using the `watch` function. The `watch` command will re-run the command that follows periodically so that we can "watch" the progress of the command and it will feel like it will be updating in real-time. The default is for it to update every two seconds.
 
 ```
-watch squeue -u $USER
+watch O2squeue
 ```
 
 ### Selecting the Resources for RStudio
