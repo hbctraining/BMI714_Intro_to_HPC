@@ -22,7 +22,7 @@ RStudio is freely available open-source Integrated Development Environment (IDE)
 * Open source
 
 
-The [O2 Portal](https://o2portal.rc.hms.harvard.edu/pun/sys/dashboard) provides an opportunity for researchers to leverage the resources of a computing cluster while maintain the interactive nature of an RStudio environment. 
+The [O2 Portal](https://o2portal.rc.hms.harvard.edu/pun/sys/dashboard) provides an opportunity for researchers to leverage the resources of a computing cluster while maintaining the interactive nature of an RStudio environment. 
 
 ### View our current jobs
 
