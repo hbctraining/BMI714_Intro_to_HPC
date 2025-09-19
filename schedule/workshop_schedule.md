@@ -4,7 +4,7 @@
 | Lessons            | Estimated Duration |
 |:------------------------|:----------|
 |[Introduction to the command line](../lessons/01_the_filesystem.md)| 40 min |
-|[Concepts and terminology related to High Performance Computing]([https://hbctraining.github.io/Intro-to-shell-flipped/lessons/08_HPC_intro_and_terms.html](https://hbctraining.github.io/Shell-for-bioinformatics/lessons/08_HPC_intro_and_terms.html)) | 20 min |
+|[Concepts and terminology related to High Performance Computing](https://hbctraining.github.io/Shell-for-bioinformatics/lessons/08_HPC_intro_and_terms.html) | 20 min |
 
 
 ## Day 1: Introduction to High-Performance Computing
