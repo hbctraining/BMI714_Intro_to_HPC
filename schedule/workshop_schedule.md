@@ -19,19 +19,19 @@
 
 | Lessons            | Estimated Duration | Instructor |
 |:------------------------|:----------|:----------|
-|[Introduction to HPC and using the O2 cluster](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_October2024_BMI713.pdf) |60 min | Meeta |
+|[Introduction to HPC and using the O2 cluster](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_October2024_BMI713.pdf) |60 min | Will |
 | Break | 10 min | |
-|[Exercise](../lessons/sbatch_Rexercise.md) |15 min | Will |
-|[Data storage on O2](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_October2024_BMI713.pdf) |15 min | Meeta |
+|[Exercise](../lessons/sbatch_Rexercise.md) |15 min | Elizabeth |
+|[Data storage on O2](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_October2024_BMI713.pdf) |15 min | Will |
 
 
 ## Day 2: Scaling up R Computation with HPC Resources
 
 | Lessons            | Estimated Duration | Instructor |
 |:------------------------|:----------|:----------|
-|[Getting started with R on O2](../lessons/R_libraries_on_O2.md) | 30 min |  Meeta |
+|[Getting started with R on O2](../lessons/R_libraries_on_O2.md) | 30 min |  Will |
 | Break | 10 min | |
-|[O2Portal: Using Rstudio on O2](../lessons/R_studio_on_02.md) | 45 min | Will |
+|[O2Portal: Using Rstudio on O2](../lessons/R_studio_on_02.md) | 45 min | Elizabeth |
 
 
 ## Post-class resources
