@@ -50,7 +50,7 @@ _Once you have identified which folder you are in, this is where we will be down
 
 **2. Right click on the link below, and be sure to "Save link as..."**. You will be prompted to choose a folder within a Finder/File Explorer window. Navigate to the directory that was listed when running `pwd`.
 
-* Download data by [right-clicking here](https://www.dropbox.com/s/9nyv1kav9wghvsx/unix_lesson.zip?st=resb0cm6&dl=1) and choose **Save link as**.
+* Download data by [right-clicking here](https://www.dropbox.com/scl/fo/16akubxml0ib005hy3w26/ALIM29FasLjJZrSkG4IM1DA?rlkey=w0a820h6inwtc9kcwznwnnphv&st=ga4g35wc&dl=1) and choose **Save link as**.
 
 **3.** Once you have downloaded the file to the correct location, go back to your **terminal window and type the 'list' command**:
 
