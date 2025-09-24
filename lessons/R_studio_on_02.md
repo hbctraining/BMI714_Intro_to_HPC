@@ -69,9 +69,9 @@ Once we have requested those resources, we can also click checkboxes to make cer
 <img src="../img/RStudio_launch.png" width="400">
 </p>
 
-> Note: If we had not previously exported our libraries, then you can also embed the command we previously added to our `~/.Renviron` file into the "Optional Environment Setup" box:
+> Note: If we had not previously exported our libraries, then you can also embed the command we previously added to our `~/.Renviron` file into the "Optional Environment Setup" that becomes available after checking the "Show advanced settings..." box:
 >```
->export R_LIBS_USER="~/R/4.2.1/library"
+>export R_LIBS_USER="~/R/4.4.2/library"
 >```
 
 We can now see that our job is queued in our `sbatch` command on the terminal and the Job ID matches the number in the parantheses in our browser (in red below). Initially, our job will be slated as "Queued", which is also shown in the browser window and in the terminal (in orange below). 
