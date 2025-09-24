@@ -11,7 +11,7 @@ Many data analysis tools require users to have a basic working knowledge of the 
 ### Dataset
 The dataset which is used in the pre-reading activities can be found at the link below. Note, **more detailed instructions for dataset download are found in the pre-reading below.**
 
-* [Introduction to Shell: Dataset](https://github.com/hbctraining/BMI713_Intro_to_HPC/blob/master/data/unix_lesson.zip?raw=true)
+* [Introduction to Shell: Dataset](https://www.dropbox.com/scl/fi/sfuftv7qx2fdi37wytep3/unix_lesson.zip?rlkey=hdx8yq1ppp80mqurrxcxj67tz&dl=1)
 
 ### Lessons
 
