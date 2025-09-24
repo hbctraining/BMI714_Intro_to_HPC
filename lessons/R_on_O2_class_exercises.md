@@ -4,9 +4,10 @@
 
 ### Setting up R environment on O2
 
-1. You have decided that you would like to use an older version of R available on O2 (R 3.6.1). Create a directory to store libraries and set the `R_LIBS_USER` environment variable to store that path.
-2. Load the R 3.6.1 module and open up R.
-3. Install the `dplyr` package.
+1. You have decided that you would like to hypothetically use a newer version of R on O2 (R 4.5.1). How would you create a directory to store libraries and set the `R_LIBS_USER` environment variable to store that path.
+> Note: Currently only version 4.4.2 of R is installed on O2 so this question and the following two questions are hypothetical.
+2. How would you load the R 4.5.1 module (assuming it is compiled against gcc/14.2.0) and open up R.
+3. What would you need to do in order to install the `dplyr` package.
 
 
 ### Submit an R job script to SLURM
