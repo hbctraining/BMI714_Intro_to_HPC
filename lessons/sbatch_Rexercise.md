@@ -16,7 +16,6 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 * The script will take in a number and return the square root of that number rounded to two decimal places. You can **copy and paste the code below** into the text editor.
 
 ```r
-
 #!/usr/bin/env Rscript
 	
 # Usage: this Rscript will accept a number and provide the square root of that number rounded to two decimal places.
@@ -40,10 +39,14 @@ round(sqrt(num), digit=2)
 	<details>
 	<summary><b><i>How to run the R script</i></b></summary>
 	<br>
-	<p> The script can be run from the command line using the <code>Rscript</code> command. Don't forget to provide a numeric value as input.
-	            
+	<p>The script can be run from the command line using the <code>Rscript</code> command. Don't forget to provide a numeric value as input.</p>  
 	<pre>
+	module load gcc/14.2.0
+	module load R/4.4.2 
+	
 	Rscript sqrt_input.R 60
+	</pre>
+	</details>
 
 ### Create a job submission script
 
@@ -72,14 +75,14 @@ If you need help figuring out what options are available for slurm directives, t
 
 ### Check the job/run 
 1. Use `sacct` to check the status of your job submission
-1. Check the contents of your current directory -
+2. Check the contents of your current directory -
     * Are there any new files with names ending in `.out` and `.err`?
     * What are the contents of these two files?
 
 <details>
 <summary><b><i>Couldn't get the script to work? Click here for the answer key.</i></b></summary>
 <br>
-<p> Your sbatch script should look something like this: 
+<p> Your sbatch script should look something like this:</p>
 <pre>
 #!/bin/bash
 
@@ -91,11 +94,11 @@ If you need help figuring out what options are available for slurm directives, t
 #SBATCH -e sqrt.err 		# File to which standard err will be written
 
 &#35; Load required modules
-module load gcc/6.2.0 R/4.1.1
+module load gcc/14.2.0
+module load R/4.4.2 
 
 &#35; Run the R script
 Rscript sqrt_input.R 60
-
 </pre>
 </p>
 </details>
