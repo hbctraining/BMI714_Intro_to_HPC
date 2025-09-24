@@ -100,7 +100,6 @@ module load R/4.4.2
 &#35; Run the R script
 Rscript sqrt_input.R 60
 </pre>
-</p>
 </details>
 
 ***
