@@ -58,10 +58,10 @@ At the top ribbon of the webpage we can select the `HMS-RC Applications` tab and
 At this point, you may be asked to provide you Harvard Key credentials and carry out Duo two-factor authentication. Now we are on a page where we can request resources for our RStudio environment. We need to request the partition, number of cores, wall time and memory. Because this is just an example, we are just going to use the `short` partition, a single core, an hour of wall time and 1 GB of memory.
 
 <p align="center">
-<img src="../img/RStudio_resource_request.png" width="400">
+<img src="../img/O2_portal_annotated.png" width="400">
 </p>
 
-> Note: If you have more than one possible account to charge, you will need to use the dropdown menu to select the account to charge. In this case, we need to select `class_hms_bmi713` as our account.
+> Note: If you have more than one possible account to charge, you will need to use the dropdown menu to select the account to charge. In this case, we need to select either `class_hms_bmi714` or `class_hms_bmi701` as our account.
 
 Once we have requested those resources, we can also click checkboxes to make certain data storage are available to us. Once we have selected any additional data storage we want access to, we can click "Launch" at the bottom. 
 
