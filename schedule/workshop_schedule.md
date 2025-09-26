@@ -19,10 +19,10 @@
 
 | Lessons            | Estimated Duration | Instructor |
 |:------------------------|:----------|:----------|
-|[Introduction to HPC and using the O2 cluster](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_October2024_BMI713.pdf) |60 min | Will |
+|[Introduction to HPC and using the O2 cluster](../slides/HPC_October2025_BMI714.pdf) |60 min | Will |
 | Break | 10 min | |
 |[Exercise](../lessons/sbatch_Rexercise.md) |15 min | Elizabeth |
-|[Data storage on O2](https://github.com/hbctraining/Intro-to-Unix-QMB/raw/master/slides/HPC_intro_O2_October2024_BMI713.pdf) |15 min | Will |
+|[Data storage on O2](../slides/HPC_October2025_BMI714.pdf) |15 min | Will |
 
 
 ## Day 2: Scaling up R Computation with HPC Resources
