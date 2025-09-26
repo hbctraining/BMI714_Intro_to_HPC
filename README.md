@@ -23,4 +23,5 @@ The dataset which is used in the pre-reading activities can be found at the link
 No installation requirements.
 
 ***Windows users:***
-[GitBash](https://git-scm.com/download/win)
+Please install [GitBash](https://git-scm.com/download/win) even if you have previously installed software such as MobaXterm or PuTTY.
+
