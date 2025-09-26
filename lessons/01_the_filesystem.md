@@ -170,7 +170,9 @@ First we did something like go to the folder of our username. Then we opened `un
 
 Like on any computer you have used before the file structure within unix is hierarchical, like an upside down tree with root (`/`) as the starting point of the tree-like structure:
 
-![Unix](../img/Slide1.jpg)
+<p align="center">
+<img src="../img/Slide1.jpg" width="600">
+</p>
 
 That root (`/`) is often also called the 'top' level.
 
