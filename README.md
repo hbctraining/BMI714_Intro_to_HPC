@@ -1,4 +1,4 @@
-## BMI 713 - Computing Skills for Biomedical Sciences 
+## BMI 714 - Advanced Coding and Statistics for Biomedical Informatics
 
 ### Description
 Many data analysis tools require users to have a basic working knowledge of the command line interface (also referred to as *UNIX, Linux, bash, shell*). They also may require the user to have access to resources (i.e. memory, CPU, storage) that exceed what is typically acessible on a personal computer or laptop.  In this session, participants will:
