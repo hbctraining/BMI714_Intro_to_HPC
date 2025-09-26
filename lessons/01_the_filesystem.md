@@ -8,9 +8,9 @@ date: "August 7, 2017"
 - How do you access the shell?
 - How do you use it?
   - Getting around the Unix file system
-  - looking at files
-  - manipulating files
-  - automating tasks
+  - Inspecting at files
+  - Manipulating files
+  - Automating tasks
 - What is it good for?
 
 ## Starting with the shell
@@ -30,7 +30,7 @@ Once you have opened the shell, you should see the command prompt ending with `$
 ```bash
 [MacBook-Pro-5:~]$ 
 ```
-
+> Note: If you are running on a Mac, you will likely see `%` instead of `$` by default. This is because Macs use `zsh`, a closely related shell to bash, by default and the command prompt in `zsh` is `%` instead of `$`. The differences between `zsh` and `bash` are beyond the scope of this material and will not impact your use of the command-line for these materials.
 
 ### Downloading data
 
@@ -48,7 +48,7 @@ $ pwd
 
 _Once you have identified which folder you are in, this is where we will be downloading your data._
 
-**2. Right click on the link below, and be sure to "Save link as..."**. You will be prompted to choose a folder within a Finder/File Explorer window. Navigate to the directory that was listed when running `pwd`.
+**2. Right click on the link below, and be sure to "Save link as..."**. You will be prompted to choose a folder within a Finder/File Explorer window. ***Navigate to the directory that was listed when running `pwd`***.
 
 * Download data by [right-clicking here](https://www.dropbox.com/scl/fi/sfuftv7qx2fdi37wytep3/unix_lesson.zip?rlkey=hdx8yq1ppp80mqurrxcxj67tz&dl=1) and choose **Save link as**.
 
@@ -176,7 +176,7 @@ That root (`/`) is often also called the 'top' level.
 
 When you log in to a remote computer you are on one of the branches of that tree, your home directory (e.g. /home/username)
 
-> On mac OS, which is a UNIX-based OS, the root level is also "/". On a windows OS, it is drive specific; generally "C:\" is considered root, but it changes to "D:/", if you are on that drive.
+> On mac OS, which is a UNIX-based OS, the root level is also `/`. On a windows OS, it is drive specific; generally `C:\` is considered root, but it changes to `D:/`, if you are on that drive. Also, if you look in a file browser on Windows, it will likely display your path with `\` rather than `/`, but they serve the same purpose. However, when you are using GtiBash on Windows, it should use `/` to denote directories.
 
 Now let's go do that same navigation at the command line.
 
@@ -248,7 +248,8 @@ You should now be in `raw_fastq` and you got there without having to go through 
 
 **Exercise**
 
-List the `Mov10_oe_1.subset.fq` file from your home directory without changing directories.
+Assuming you are in your Home directory, write the path to the `Mov10_oe_1.subset.fq` file without changing directories.
+
 
 ****
 
@@ -295,13 +296,23 @@ Over time, it will become easier for you to keep a mental note of the structure 
 
 Change directories to `~/unix_lesson/raw_fastq/`, and list the contents of `unix_lesson/other` without changing directories again.
 
+> Note: The use of `~` is a shortcut that uses the value saved to the environment variable `$HOME`. If you were to enter the command:
+> ```
+>$ echo $HOME 
+> ```
+> It should return something like:
+> ```
+>/Users/marypiper
+> ```
+> When bash sees a `~` it calls the environment variable `$HOME` and replaces it with the `~` before executing the code. Because of this, paths like `~/unix_lesson/raw_fastq/` are considered full paths, becuase they get expanded by bash to be `/Users/marypiper/unix_lesson/raw_fastq/` before being executed and thus start with a `/`.
+
 ***
 
 ### Saving time with tab completion, wildcards and other shortcuts 
 
 #### Tab completion
 
-Navigate to the home directory. Typing out directory names can waste a lot of time. When you start typing out the name of a directory, then hit the tab key, the shell will try to fill in the rest of the directory name. For example, type `cd` to get back to your home directly, then enter:
+Navigate to the home directory. Typing out directory names can waste a lot of time. When you start typing out the name of a directory, then hit the tab key, the shell will try to fill in the rest of the directory name. For example, type `cd` to get back to your Home directory, then enter:
 
 ```bash
 $ cd uni<tab>
@@ -313,7 +324,7 @@ The shell will fill in the rest of the directory name for `unix_lesson`. Now go 
 $ ls Mov10_oe_<tab><tab>
 ```
 
-When you hit the first tab, nothing happens. The reason is that there are multiple directories in the home directory which start with `Mov10_oe_`. Thus, the shell does not know which one to fill in. When you hit tab again, the shell will list the possible choices.
+When you hit the first tab, nothing happens. The reason is that there are multiple files in the home directory which start with `Mov10_oe_`. Thus, the shell does not know which one to fill in. When you hit tab again, the shell will list the possible choices.
 
 Tab completion can also fill in the names of commands. For example, enter `e<tab><tab>`. You will see the name of every command that starts with an `e`. One of those is `echo`. If you enter `ec<tab>` you will see that tab completion works. 
 
@@ -406,7 +417,7 @@ To summarize, while you are in your home directory, the commands `ls ~`, `ls ~/.
 
 #### Command History
 
-You can easily access previous commands.  Hit the up arrow. Hit it again.  You can step backwards through your command history. The down arrow takes your forwards in the command history.
+You can easily access previous commands.  Hit the up arrow. Hit it again.  You can step backwards through your command history. The down arrow takes your forward in the command history.
 
 'Ctrl-r' will do a reverse-search through your command history.  This
 is very useful.
