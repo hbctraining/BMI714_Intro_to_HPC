@@ -24,7 +24,7 @@ In the last session we demonstrated the use of R on a high performance compute e
 ### Why use R on the cluster?
 If you are working with small(er) data files, using R on your personal computer will suffice. However, once the data become large there are a few reasons why it might be to your advantage to switch to using R on a high performance compute cluster.
 
-* **Increased** access to **compututational resources**
+* **Increased** access to **computational resources**
     * Large datasets have increased **memory** requirements for processing
     * R can be built and linked to libraries which utilizes **multi-core** technology for automatic parallel execution
 * Access to **different R versions**
@@ -57,7 +57,7 @@ Make sure that your command prompt is now preceded by a character string that co
 
 ### Loading the appropriate R module
 
-In order to use R on O2, we need to first load the module. There is currently only a single versions of R are available as a module on O2. There were more available prior to the conversion of O2 to RedHat. As newer versions of R are released they will likely be added to O2.
+In order to use R on O2, we need to first load the module. There is currently only a single version of R available as a module on O2. There were more available prior to the conversion of O2 to RedHat. As newer versions of R are released they will likely be added to O2.
 
 ```bash
 $ module spider R
