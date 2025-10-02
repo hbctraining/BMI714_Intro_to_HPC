@@ -134,7 +134,7 @@ Now, let's go ahead and close our RStudio session by clicking the red button in 
 
 > Note: Impartantly, this is closing the RStudio session. When we closed the tab holding the RStudio earlier, it actually didn't close the RStudio session. This is an important distinction which we will soon see.
 
-Once we have closed the RStudio session, we will have an option to reopen it. When we reopen it, you will notice that it is the  environment has been wiped clean. That is because the environment is not saved when closing an RStudio session. In order to save the environment, you will need to use the `save.image()` function in R. Let's once again, assign a few variables:
+Once we have closed the RStudio session, we will have an option to reopen it. When we reopen it, you will notice that the environment has been wiped clean. That is because the environment is not saved when closing an RStudio session. In order to save the environment, you will need to use the `save.image()` function in R. Let's once again, assign a few variables:
 
 ```
 x <- 2
