@@ -19,7 +19,7 @@
 
 | Lessons            | Estimated Duration | Instructor |
 |:------------------------|:----------|:----------|
-|[Introduction to HPC and using the O2 cluster](../slides/HPC_October2025_BMI714.pdf) |60 min | Will |
+|[Introduction to HPC and using the O2 cluster](../slides/HPC_October2025_BMI714.pdf) |50 min | Will |
 | Break | 10 min | |
 |[Exercise](../lessons/sbatch_Rexercise.md) |15 min | Elizabeth |
 |[Data storage on O2](../slides/HPC_October2025_BMI714.pdf) |15 min | Will |
@@ -29,7 +29,7 @@
 
 | Lessons            | Estimated Duration | Instructor |
 |:------------------------|:----------|:----------|
-|[Getting started with R on O2](../lessons/R_libraries_on_O2.md) | 30 min |  Will |
+|[Getting started with R on O2](../lessons/R_libraries_on_O2.md) | 35 min |  Will |
 | Break | 10 min | |
 |[O2Portal: Using Rstudio on O2](../lessons/R_studio_on_02.md) | 45 min | Elizabeth |
 
