@@ -104,7 +104,7 @@ $ ls -F
 genomics_data/  other/  raw_fastq/  README.txt  reference_data/
 ```
 
-Anything with a forward slash `/` after it is a directory. Things with an asterik `*` after them are programs.  If there are no decorations after the name, it's a file.
+Anything with a forward slash `/` after it is a directory. Things with an asterisk `*` after them are programs.  If there are no decorations after the name, it's a file.
 
 > All commands are essentially programs that are able to perform specific, commonly-used tasks.
 
@@ -148,6 +148,8 @@ manual using the `man` command. Try entering:
 ```bash
 $ man ls
 ```
+
+> Note for Windows users on GitBash, the `man` command likely won't work. You can find the `man` page for a command using your preferred search enigine.
 
 This will open the manual page for `ls`. Use the 'space' key to go forward and 'b' to go backwards. When you are done reading, just hit `q` to quit.
 
@@ -412,7 +414,7 @@ $ ls ../..
 
 prints the contents of `/Users/marypiper/` which is your home directory. 
 
-Finally, the special directory `.` always refers to your current directory. So, `ls`, `ls .`, and `ls ././././.` all do the same thing, they print the contents of the current directory. This may seem like a useless shortcut right now, but we used it earlier when we copied over the data to our home directory.
+Finally, the special directory `.` always refers to your current directory. So, `ls`, `ls .`, and `ls ././././.` all do the same thing, they print the contents of the current directory. This may seem like a useless shortcut right now, but it can be very helpful when copying data.
 
 
 To summarize, while you are in your home directory, the commands `ls ~`, `ls ~/.`, and `ls /Users/marypiper/` all do exactly the same thing. These shortcuts are not necessary, but they are really convenient!
@@ -430,7 +432,7 @@ You can also review your recent commands with the `history` command.  Just enter
 $ history
 ```
 
-to see a numbered list of recent commands, including this just issues
+to see a numbered list of recent commands, including this just used
 `history` command. 
 
 > Only a certain number of commands are stored and displayed with `history`, there is a way to modify this to store a different number.
@@ -459,7 +461,7 @@ This prints out the all the contents of `sequences.fa` to the screen.
 
 What does this file contain?
 
-`cat` is a terrific command, but when the file is really big, it can be annoying to use. The command, `less`, is useful for this case. Let's take a look at the raw_fastq files. These files are quite large, so we probably do not want to use the `cat` command to look at them. Instead, we can use the `less` command. 
+`cat` is a terrific command, but when the file is really big, it can be annoying to use. The command, `less`, is useful for this case. Let's take a look at the `raw_fastq` files. These files are quite large, so we probably do not want to use the `cat` command to look at them. Instead, we can use the `less` command. 
 
 Move back to our `raw_fastq` directory and enter the following command:
 
@@ -512,7 +514,7 @@ $ tail -n 1 Mov10_oe_1.subset.fq
 
 ## Creating, moving, copying, and removing
 
-Now we can move around in the file structure, look at files, search files, redirect. But what if we want to do normal things like copy files or move them around or get rid of them. Sure we could do most of these things without the command line, but what fun would that be?! Besides it's often faster to do it at the command line, or you'll be on a remote server like Amazon where you won't have another option.
+Now we can move around in the file structure, look at files and search files. But what if we want to do normal things like copy files or move them around or get rid of them. Sure we could do most of these things without the command line, but what fun would that be?! Besides it's often faster to do it at the command line, or you'll be on a remote server like Amazon where you won't have another option.
 
 Our raw data in this case is fastq files. We don't want to change the original files, so let's make a copy to work with.
 
@@ -618,19 +620,25 @@ ctrl + e      # end of line
 
 #### Information on the shell
 
-shell cheat sheets:<br>
-* [http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/](http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/)
-* [https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md](https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md)
+shell cheatsheets:
+
+- [http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/](http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/)
+- [https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md](https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md)
 
 Explain shell - a web site where you can see what the different components of
 a shell command are doing.  
-* [http://explainshell.com](http://explainshell.com)
-* [http://www.commandlinefu.com](http://www.commandlinefu.com)
+
+- [http://explainshell.com](http://explainshell.com)
+
+Repository of bash one-liners
+
+- [http://www.commandlinefu.com](http://www.commandlinefu.com)
 
 Software Carpentry tutorial: [The Unix shell](https://swcarpentry.github.io/shell-novice/)
 
 General help:
-- http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html
+
+- [http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html)
 - man bash
 - Google - if you don't know how to do something, try Googling it. Other people
 have probably had the same question.
