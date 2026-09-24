@@ -640,10 +640,9 @@ General help:
 
 - [http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html)
 - man bash
-- Google - if you don't know how to do something, try Googling it. Other people
-have probably had the same question.
-- Learn by doing. There's no real other way to learn this than by trying it
-out.  
+- Google - if you don't know how to do something, try Googling it. Other people have probably had the same question.
+- Learn by doing. There's no real other way to learn this than by trying it out.
+- AI tools are great for debugging issues and code
 
 ***
 
