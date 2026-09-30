@@ -21,7 +21,7 @@ cd R_workshop
 
 * **Type `nano sqrt_input.R` at the command prompt**. This will open up a new script file where you can add the contents of your R script.
 
-> **NOTE:** `nano` is a text editor that you can use when working on the command line. There are other editors you can choose from. For more information on command-line text editors, [check out this lesson](https://hbctraining.github.io/Intro-to-shell-flipped/lessons/03_working_with_files.html#writing-files).
+> **NOTE:** `nano` is a text editor that you can use when working on the command line. There are other editors you can choose from. For more information on command-line text editors, [check out this lesson](https://hbctraining.github.io/Shell-for-bioinformatics/lessons/03_working_with_files.html#writing-files).
 
 * The script will take in a number and return the square root of that number rounded to two decimal places. You can **copy and paste the code below** into the text editor.
 
