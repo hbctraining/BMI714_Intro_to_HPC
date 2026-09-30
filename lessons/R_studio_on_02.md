@@ -21,14 +21,13 @@ RStudio is freely available open-source Integrated Development Environment (IDE)
 * Platform agnostic
 * Open source
 
-
 The [O2 Portal](https://o2portal.rc.hms.harvard.edu/pun/sys/dashboard) provides an opportunity for researchers to leverage the resources of a computing cluster while maintaining the interactive nature of an RStudio environment. 
 
 ### View our current jobs
 
 Before we get started with creating an RStudio session on O2, let's first look at the jobs we have running on O2 using the `squeue` command. This will show our currently running jobs:
 
-```
+```bash
 O2squeue
 ```
 
@@ -36,10 +35,9 @@ O2squeue
 <img src="../img/Inital_squeue.png" width="900">
 </p>
 
-
 We can see that we currently have 1 interactive job currently running. We will continue to monitor our jobs using the `watch` function. The `watch` command will re-run the command that follows periodically so that we can "watch" the progress of the command and it will feel like it is updating in real-time. The default is for it to update every two seconds.
 
-```
+```bash
 watch O2squeue
 ```
 
@@ -55,7 +53,7 @@ At the top ribbon of the webpage we can select the `HMS-RC Applications` tab and
 <img src="../img/O2_portal_webpage_highlighted.png" width="900">
 </p>
 
-At this point, you may be asked to provide you Harvard Key credentials and carry out Duo two-factor authentication. Now we are on a page where we can request resources for our RStudio environment. We need to request the partition, number of cores, wall time and memory. Because this is just an example, we are just going to use the `short` partition, a single core, an hour of wall time and 1 GB of memory.
+At this point, you may be asked to provide your Harvard Key credentials and carry out two-factor authentication. Now we are on a page where we can request resources for our RStudio environment. We need to request the partition, number of cores, wall time and memory. Because this is just an example, we are just going to use the `short` partition, a single core, an hour of wall time and 1 GB of memory.
 
 <p align="center">
 <img src="../img/O2_portal_annotated.png" width="400">
@@ -63,18 +61,25 @@ At this point, you may be asked to provide you Harvard Key credentials and carry
 
 > Note: If you have more than one possible account to charge, you will need to use the dropdown menu to select the account to charge. In this case, we need to select either `class_hms_bmi714` or `class_hms_bmi701` as our account.
 
-Once we have requested those resources, we can also click checkboxes to make certain data storage are available to us. Once we have selected any additional data storage we want access to, we can click "Launch" at the bottom. 
+We can then select which modules should be loaded behind the scenes to support our RStudio session. Just like when running R from the command line, we need to load gcc and R!
+
+> Note: Some R packages will require additional modules to be loaded as dependencies.
+
+There are also options present to select GPU resources, if you need them.
+
+Once we have requested those resources, we can click "Launch" at the bottom. 
 
 <p align="center">
 <img src="../img/RStudio_launch.png" width="400">
 </p>
 
-> Note: If we had not previously exported our libraries, then you can also embed the command we previously added to our `~/.Renviron` file into the "Optional Environment Setup" that becomes available after checking the "Show advanced settings..." box:
->```
->export R_LIBS_USER="~/R/4.4.2/library"
->```
+> Note: If we had not previously exported our libraries, we could also embed the command we previously added to our `~/.Renviron` file into the "Optional Environment Setup" field that becomes available after checking the "Show advanced settings..." box:
+> ```bash
+> export R_LIBS_USER="~/R/4.4.2/library"
+> ```
+> Or just add the path to that library in the "Shared R Personal Library" field.
 
-We can now see that our job is queued in our `sbatch` command on the terminal and the Job ID matches the number in the parantheses in our browser (in red below). Initially, our job will be slated as "Queued", which is also shown in the browser window and in the terminal (in orange below). 
+We can now see that our job is queued in our `sbatch` command on the terminal and the Job ID matches the number in the parentheses in our browser (in red below). Initially, our job will be slated as "Queued", which is also shown in the browser window and in the terminal (in orange below). 
 
 <p align="center">
 <img src="../img/Queued_RStudio_on_O2.png" width="900">
@@ -92,35 +97,35 @@ We can start our RStudio environment by clicking on the "Connect to RStudio Serv
 
 Let's make some edits to our R script, `sqrt_input.R`, in the browser. Let's change:
 
-```
-round(sqrt(num), digit=2) 
+```R
+round(sqrt(num), digit = 2) 
 ```
 
 Now let's add two to the output of the rounded square root:
 
-```
-round(sqrt(num), digit=2) + 2
+```R
+round(sqrt(num), digit = 2) + 2
 ```
 
-We can save these changes and look at our Rscript in the terminal:
+We can save these changes and look at our R script in the terminal:
 
-```
+```bash
 less sqrt_input.R
 ```
 
-Now we can see that our edits are reflected in the R Script.
+Now we can see that our edits are reflected in the R script.
 
-## Closing a Tab with RStudio
+## Closing a tab with RStudio
 
-Perhaps you need to close your computer or your browser window, what will happen to your job and the data currently in your R environment? No worries, it will all still be there as long as the RStudio job is still running on the cluster. Importantly, when you close the tab that that is holding the RStudio IDE, then this does not end the session or end the job. The variables in your environment are still being held on the cluster. This can be really nice when working on long computations. Let's go ahead and close a tab in our web browser containing our RStudio IDE.
+Perhaps you need to close your computer or your browser window—what will happen to your job and the data currently in your R environment? No worries, it will all still be there as long as the RStudio job is still running on the cluster. Importantly, when you close the tab that that is holding the RStudio IDE, then this does not end the session or end the job. The variables in your environment are still being held on the cluster. This can be really nice when working on long computations. Let's go ahead and close a tab in our web browser containing our RStudio IDE.
 
 We can log back into the O2 Portal page and click on the "Connect to RStudio Server" and it will bring back the session you were working on as long as your job is still running. 
 
-## Saving RStudio Environments
+## Saving RStudio environments
 
 However, you might want to save everything you are working on because your job allocation is coming to an end or you have finished your analyses. In order to demonstrate what to do in this scenario, let's first assign a few variables:
 
-```
+```R
 x <- 2
 y <- 3
 z <- x + y
@@ -132,11 +137,11 @@ Now, let's go ahead and close our RStudio session by clicking the red button in 
 <img src="../img/Closing_RStudio.png" width="900">
 </p>
 
-> Note: Impartantly, this is closing the RStudio session. When we closed the tab holding the RStudio earlier, it actually didn't close the RStudio session. This is an important distinction which we will soon see.
+> Note: Importantly, clicking this red button is closing the RStudio session. When we closed the *tab* holding the RStudio earlier, it actually didn't close the RStudio session. This is an important distinction, as we will soon see.
 
 Once we have closed the RStudio session, we will have an option to reopen it. When we reopen it, you will notice that the environment has been wiped clean. That is because the environment is not saved when closing an RStudio session. In order to save the environment, you will need to use the `save.image()` function in R. Let's once again, assign a few variables:
 
-```
+```R
 x <- 2
 y <- 3
 z <- x + y
@@ -144,25 +149,25 @@ z <- x + y
 
 But this time, before you close our RStudio session, let's go ahead and save the environment using the `save.image()` function:
 
-```
+```R
 save.image()
 ```
 
-Now, our environment is saved by default to a hidden file `.RData` in our Home directory. However, we can save it to a specific directory, such as our `R_workshop` directory by providing the path to this directory. Let's make our environment a bit different so that we can differentiate the two `.RData` environments.
+Now, our environment is saved by default to a hidden file `.RData` in our Home directory. However, we can save it to a specific directory, such as our `R_workshop` directory, by providing the path to this directory. Let's make our environment a bit different so that we can differentiate the two `.RData` environments.
 
-```
+```R
 a <- 1
 ```
 
 Now let's save this `.RData` object to out `R_workshop` directory:
 
-```
+```R
 save.image("~/R_workshop/.RData")
 ```
 
 Now let's close our RStudio session and re-open it. We will notice that by default RStudio is reading the `.RData` image from our Home directory, because the `a` variable is not in the environment. However, if you want to load the `.RData` image from our `R_workshop` directory, then we can use the following command:
 
-```
+```R
 load("~/R_workshop/.RData")
 ```
 
