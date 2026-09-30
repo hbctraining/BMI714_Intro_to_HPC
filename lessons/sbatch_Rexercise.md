@@ -8,6 +8,15 @@ Create an R script and add the appropriate slurm directives to run it as a batch
 >
 > However, R scripts are plain text files that only have code for R to execute. One way to think about the difference between RMarkdown and an R script is that an R script likely looks like all of the code within the code blocks in your RMarkdown pushed together. When working with RMarkdown, you will likely share the HTML/PDF/etc. output, but when working with an R script you would share the R script directly.  
 
+### Make a new folder to work in
+
+Let's create a directory to keep the files for this analysis together, then make sure we are working from that folder.
+
+```bash
+mkdir R_workshop
+cd R_workshop
+```
+
 ### Create the R script
 
 * **Type `nano sqrt_input.R` at the command prompt**. This will open up a new script file where you can add the contents of your R script.
